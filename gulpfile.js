@@ -73,9 +73,17 @@ gulp.task('extras', function () {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('samples', function () {
+  return gulp.src([
+    'app/samples/**/*.mp3',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/samples'));
+});
+
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'fonts'], function () {
+gulp.task('serve', ['styles', 'fonts', 'samples'], function () {
   browserSync({
     notify: false,
     port: 9000,
@@ -118,7 +126,7 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras', 'samples'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
