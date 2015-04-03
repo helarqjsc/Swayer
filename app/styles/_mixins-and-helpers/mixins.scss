@@ -1,0 +1,9 @@
+// Grid
+@for $i from 0 through 12 {
+    .col-#{$i} {
+        @extend .col-xs-#{$i};
+        @extend .col-sm-#{$i};
+        @extend .col-md-#{$i};
+        @extend .col-lg-#{$i};
+    }
+}
