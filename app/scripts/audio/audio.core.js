@@ -89,4 +89,61 @@ var audio = {
     this.sources[n].noteOn(0);
   },
 
+  /**
+   * Stop audio
+   *
+   * @param {Integer} Number of array
+   */
+  stop: function(n) {
+    'use strict';
+
+    this.sources[n].noteOff(0);
+  },
+
+  /**
+   * Bind event on audio elemet
+   *
+   * Touch start and end
+   */
+  bind: function() {
+    'use strict';
+
+    var $elem = $('.test');
+
+    $elem
+      // Play 
+      .on('mousedown', function() {
+        audio.play($(this).index());
+      })
+      // Stop
+      .on('mouseup', function() {
+        var duration = $(this).attr('audio-duration');
+        
+        if (duration === 'short') {
+          audio.stop($(this).index());
+        }
+      });
+  },
+
+  /**
+   * Init module
+   */
+  init: (function() {
+    'use strict';
+
+    $(window).load(function() {
+      // For each audio element
+      $('.audio').each(function(i) {
+        var file = $(this).attr('audio-file');
+
+        // Create context...
+        audio.createContext(i);
+        // ...and set file
+        audio.setFile(i, file);
+      });
+
+      audio.bind();
+    });
+  }()),
+
 };

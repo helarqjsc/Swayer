@@ -1,35 +1,35 @@
 /* jshint devel:true */
 
-!(function() {
+// !(function() {
 
-  var test = {
+//   var test = {
 
-    bind: function() {
-      'use strict';
+//     bind: function() {
+//       'use strict';
 
-      var $elem = $('.test');
+//       var $elem = $('.test');
 
-      $elem.on('click', function() {
-        audio.play($(this).index());
-      });
-    },
+//       $elem.on('click', function() {
+//         audio.play($(this).index());
+//       });
+//     },
 
-    init: (function() {
-      'use strict';
+//     init: (function() {
+//       'use strict';
 
-      window.onload = function() {
+//       window.onload = function() {
 
-        $('.audio').each(function(i) {
-          var file = $(this).attr('audio-file');
+//         $('.audio').each(function(i) {
+//           var file = $(this).attr('audio-file');
 
-          audio.createContext(i);
-          audio.setFile(i, file);
-        });
+//           audio.createContext(i);
+//           audio.setFile(i, file);
+//         });
 
-        test.bind();
-      };
-    }())
+//         test.bind();
+//       };
+//     }())
 
-  };
+//   };
 
-}())
+// }())
