@@ -22,7 +22,7 @@
         $('.audio').each(function(i) {
           var file = $(this).attr('audio-file');
 
-          audio.contexts[i] = new webkitAudioContext();
+          audio.createContext(i);
           audio.setFile(i, file);
         });
 
@@ -31,5 +31,5 @@
     }())
 
   };
-  
+
 }())

@@ -9,9 +9,26 @@ var audio = {
   // AudioContext buffers
   buffers: {},
 
+  /**
+   * Create WebkitAudioContext
+   *
+   * @param {Integer} Number of array
+   */
+  createContext: function(i) {
+    'use strict';
+
+    this.contexts[i] = new webkitAudioContext();
+  },
+
+  /**
+   * Create WebkiaAudioContext
+   *
+   * @param {Integer} Number of array
+   * @param {String} File name
+   */
   setFile: function(num, file) {
     'use strict';
-    
+
     var req = [];
 
     req[num] = new XMLHttpRequest();
@@ -26,6 +43,12 @@ var audio = {
     req[num].send();
   },
 
+  /**
+   * Set buffer
+   *
+   * @param {Object} Request
+   * @param {Integer} Number of context
+   */
   setBuffer: function(e, i) {
     'use strict';
 
@@ -34,6 +57,13 @@ var audio = {
     this.buffers[req.soundName] = this.contexts[i].createBuffer(req.response, false);
   },
 
+  /**
+   * Set audio options
+   *
+   * Options: volume. Todo: delay, eq, pan, etc.
+   *
+   * @param {Integer} Number of array
+   */
   setOptions: function(n) {
     'use strict';
 
@@ -47,13 +77,16 @@ var audio = {
     vol.connect(this.contexts[n].destination);
   },
 
+  /**
+   * Play audio
+   *
+   * @param {Integer} Number of array
+   */
   play: function(n) {
     'use strict';
 
-    setTimeout(function() {
-      audio.setOptions(n);
-      audio.sources[n].noteOn(0);
-    }, 10);
+    this.setOptions(n);
+    this.sources[n].noteOn(0);
   },
 
 };
