@@ -82,10 +82,12 @@ var audio = {
    *
    * @param {Integer} Number of array
    */
-  play: function(n) {
+  play: function(n, loop) {
     'use strict';
 
     this.setOptions(n);
+    console.log(loop)
+    this.sources[n].loop = loop;
     this.sources[n].noteOn(0);
   },
 
@@ -108,14 +110,21 @@ var audio = {
   bind: function() {
     'use strict';
 
-    var $elem = $('.test');
+    var $elem = $('.js-pad'),
+      loop; // loop or not sample
 
     $elem
-      // Play 
+      // Event to play 
       .on('mousedown', function() {
-        audio.play($(this).index());
+        // Check loop or not sample
+        loop = false;
+        if ($(this).attr('audio-continue') == 'loop') {
+          loop = true
+        }
+        // Play
+        audio.play($(this).index(), loop);
       })
-      // Stop
+      // Event to stop
       .on('mouseup', function() {
         var duration = $(this).attr('audio-duration');
         
