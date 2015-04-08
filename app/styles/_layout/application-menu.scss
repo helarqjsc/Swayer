@@ -1,0 +1,24 @@
+// Vars
+$application-menu-bg: rgba(0, 0, 0, .3);
+$blur-radius: 10px;
+
+// Change body class when show menu
+body {
+
+  &.show-application-menu {
+    
+    // Blur workspace and dock
+    .workspace, .dock {
+      @include blur($blur-radius);
+    }
+  }
+}
+
+// Workspace
+.application-menu {
+  @include fullscreen();
+
+  z-index: 21;
+
+  background: $application-menu-bg;
+}
