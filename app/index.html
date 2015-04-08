@@ -20,44 +20,82 @@
   <body>
   
   <div class="workspace">
-    <div class="container">
-      <div class="row">
-        <div class="device js-pad audio col-2"
-          audio-file="1.mp3"
-          audio-duration="long"
-          audio-continue="oneshot">
-          1
-        </div>
-        <div class="device js-pad audio col-2"
-          audio-file="2.mp3"
-          audio-duration="short"
-          audio-continue="loop">
-          2
-        </div>
-      </div><!-- row -->
-    </div><!-- container -->
+    <div class="wrap">
+
+      <div class="device">
+        1
+      </div>
+
+      <div class="device">
+        2
+      </div>
+      
+      <!-- <div class="container">
+        <div class="row">
+
+          <div class="device col-12">
+            <div class="js-pad audio col-2"
+              audio-file="1.mp3"
+              audio-duration="long"
+              audio-continue="oneshot">
+              1
+            </div>          
+            <div class="js-pad audio col-2"
+              audio-file="2.mp3"
+              audio-duration="short"
+              audio-continue="loop">
+              2
+            </div>
+          </div>
+
+          <div class="device col-12">
+            <div class="js-pad audio col-2"
+              audio-file="1.mp3"
+              audio-duration="long"
+              audio-continue="oneshot">
+              1
+            </div>          
+            <div class="js-pad audio col-2"
+              audio-file="2.mp3"
+              audio-duration="short"
+              audio-continue="loop">
+              2
+            </div>
+          </div> -->
+
+        </div><!-- row -->
+      </div><!-- container -->
+
+    </div><!-- wrap -->
   </div><!-- workspace-->
 
   <div class="dock container">
     <div class="row">
+      
       <div class="dock-icon dock-lock col-2">
         lock
-      </div>
+      </div><!-- lock icon -->
+      
       <div class="dock-icon dock-add-device col-2">
         add
-      </div>
-      <div class="dock-icon dock-device dock-device-skills col-2">
+      </div><!-- add device -->
+      
+      <div class="dock-icon dock-device dock-device-skills active col-2">
         <div class="dock-icon-active-dot"></div>
       </div>
+      
       <div class="dock-icon dock-device dock-device-xy-synth col-2">
         <div class="dock-icon-active-dot"></div>
       </div>
+
       <div class="dock-icon dock-device dock-device-piano col-2">
         <div class="dock-icon-active-dot"></div>
       </div>
+
       <div class="dock-icon dock-menu col-2">
         menu
-      </div>
+      </div><!-- menu -->
+
     </div><!-- row -->
   </div><!-- dock -->
     

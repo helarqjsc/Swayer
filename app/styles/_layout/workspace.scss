@@ -1,4 +1,30 @@
+// Vars
+$device-margin: 3vw;
+$device-padding: 3vw;
+$device-border-radius: 10px;
+$device-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+
 // Workspace
 .workspace {
+  overflow: hidden;
   
+  // Carousel with devices
+  .wrap {
+    width: 9999999px;
+    
+    // Device styles
+    .device {
+      float: left;
+      
+      -webkit-box-sizing: border-box; 
+
+      padding: $device-padding;
+      margin: $device-margin;
+
+      width: 100 - ($device-margin * 2);
+
+      border-radius: $device-border-radius;
+      box-shadow: $device-box-shadow;
+    }
+  }
 }

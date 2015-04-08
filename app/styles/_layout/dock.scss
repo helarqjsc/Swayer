@@ -1,10 +1,10 @@
+// Vars
+$icon-radius: 4vw;
+$icon-size: 12.6666666667vw;
+$icon-margin: 2vw;
+
 // Dock
 .dock {
-  
-  // Vars
-  $icon-radius: 4vw;
-  $icon-size: 12.6666666667vw;
-  $icon-margin: 2vw;
 
   // Common style for icon
   //
@@ -17,6 +17,14 @@
     height: $icon-size;
 
     margin: $icon-margin;
+  
+    // Show indicate for active device
+    &.active {
+
+      .dock-icon-active-dot {
+        display: inline-block;
+      }
+    }
 
     // Add device
     &.dock-add-device {
@@ -41,6 +49,24 @@
         background: #000;
       }
     }
+
+    // Indicate active device
+    .dock-icon-active-dot {
+      $size: 5px;
+
+      @include circle();
+      
+      // Show when device is active
+      // Parent should has class `active`
+      display: none;
+
+      width: $size;
+      height: $size;
+
+      background: red;
+
+      margin-top: $icon-size + ($icon-margin / 2);
+    }
   }
 
   // Lock icon
@@ -51,20 +77,5 @@
   // Menu icon
   .dock-menu {
     background: blue;
-  }
-
-  // Indicate active device
-  .dock-icon-active-dot {
-    $size: 5px;
-
-    @include circle();
-
-    width: $size;
-    height: $size;
-
-    background: red;
-    display: inline-block;
-
-    margin-top: $icon-size + ($icon-margin / 2);
   }
 }
