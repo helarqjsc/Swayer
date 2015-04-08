@@ -3,6 +3,8 @@
   
   // Vars
   $icon-radius: 4vw;
+  $icon-size: 12.6666666667vw;
+  $icon-margin: 2vw;
 
   // Common style for icon
   //
@@ -11,10 +13,10 @@
     border-radius: $icon-radius;
     text-align: center;
 
-    width: 12.6666666667vw; 
-    height: 12.6666666667vw;
+    width: $icon-size; 
+    height: $icon-size;
 
-    margin: 2vw;
+    margin: $icon-margin;
 
     // Add device
     &.dock-add-device {
@@ -49,5 +51,20 @@
   // Menu icon
   .dock-menu {
     background: blue;
+  }
+
+  // Indicate active device
+  .dock-icon-active-dot {
+    $size: 5px;
+
+    @include circle();
+
+    width: $size;
+    height: $size;
+
+    background: red;
+    display: inline-block;
+
+    margin-top: $icon-size + ($icon-margin / 2);
   }
 }

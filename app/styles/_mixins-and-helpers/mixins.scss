@@ -7,3 +7,8 @@
         @extend .col-lg-#{$i};
     }
 }
+
+// Circle element
+@mixin circle() {
+  border-radius: 100%;
+}
