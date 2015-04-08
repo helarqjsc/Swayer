@@ -1,0 +1,53 @@
+// Dock
+.dock {
+  
+  // Vars
+  $icon-radius: 4vw;
+
+  // Common style for icon
+  //
+  // Add application, application and menu
+  .dock-icon {
+    border-radius: $icon-radius;
+    text-align: center;
+
+    width: 12.6666666667vw; 
+    height: 12.6666666667vw;
+
+    margin: 2vw;
+
+    // Add device
+    &.dock-add-device {
+      border: 1px solid #CCC;
+    }
+
+    // Device icons
+    &.dock-device {
+      
+      // Skills device
+      &.dock-device-skills {
+        background: red;
+      }
+
+      // XY synth
+      &.dock-device-xy-synth {
+        background: green;
+      }
+
+      // Piano
+      &.dock-device-piano {
+        background: #000;
+      }
+    }
+  }
+
+  // Lock icon
+  .dock-lock {
+    background: blue;
+  }
+
+  // Menu icon
+  .dock-menu {
+    background: blue;
+  }
+}
