@@ -11,6 +11,11 @@ body {
     .workspace, .dock {
       @include blur($blur-radius);
     }
+
+    // Workspace
+    .application-menu {
+      display: block;
+    }
   }
 }
 
@@ -19,6 +24,7 @@ body {
   @include fullscreen();
 
   z-index: 21;
+  display: none;
 
   background: $application-menu-bg;
 }

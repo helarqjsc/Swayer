@@ -37,3 +37,12 @@
   -ms-filter: blur($radis); 
   filter: blur($radis);
 }
+
+// Show element when element has class `js-show`
+@mixin show() {
+  display: none;
+
+  &.js-show {
+    display: block;
+  }
+}

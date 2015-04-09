@@ -1,0 +1,22 @@
+// Common styles for each device
+
+// Vars
+$device-menu-bg: rgba(0, 0, 0, .8);
+
+// Device, device menu .etc
+.device {
+  position: relative;
+  overflow: hidden;
+
+  // Device main setting menu
+  .device-menu {
+    @include fullscreen();
+    @include show();
+
+    background: $device-menu-bg;
+
+    text-align: center;
+
+    color: #FFF;
+  }
+}

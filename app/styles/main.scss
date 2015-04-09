@@ -30,7 +30,9 @@
 // Devices
 // *****************************************************************************
 
-@import "_devices/test";
+@import 
+        "_devices/device",
+        "_devices/test";
 
 // temp
 .device {
