@@ -19,7 +19,7 @@ $icon-margin: 2vw;
     margin: $icon-margin;
   
     // Show indicate for active device
-    &.active {
+    &.show-device-indicator {
 
       .dock-icon-active-dot {
         display: inline-block;

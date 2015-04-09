@@ -25,9 +25,10 @@
     bind: function() {
 
       // Event to show device menu
-      $('*[data-js-show]').on('click', function() {
+      $('*[show-device-menu]').on('click', function() {
+        
         // Get element from attr `data-js-show`
-        var $showElem = $('.' + $(this).attr('data-js-show'));
+        var $showElem = $('.' + $(this).attr('show-device-menu'));
 
         device.menu.toggle($showElem);
       });

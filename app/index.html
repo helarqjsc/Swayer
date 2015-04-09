@@ -27,14 +27,14 @@
       <div class="device">
         1
 
-        <button data-js-show="device-menu">
+        <button show-device-menu="device-menu">
           open menu
         </button>
 
         <!-- menu -->
         <div class="device-menu">
           menu
-          <button data-js-show="device-menu">
+          <button show-device-menu="device-menu">
             open menu
           </button>
         </div><!-- menu -->
@@ -42,6 +42,10 @@
 
       <div class="device">
         2
+      </div>
+
+      <div class="device">
+        3
       </div>
       
       <!-- <div class="container">
@@ -94,17 +98,19 @@
         add
       </div><!-- add device -->
       
-      <div class="dock-icon dock-device dock-device-skills active col-2">
-        <div class="dock-icon-active-dot"></div>
-      </div>
-      
-      <div class="dock-icon dock-device dock-device-xy-synth col-2">
-        <div class="dock-icon-active-dot"></div>
-      </div>
+      <section class="js-device-carousel">
+        <div class="dock-icon dock-device dock-device-skills active col-2">
+          <div class="dock-icon-active-dot"></div>
+        </div>
+        
+        <div class="dock-icon dock-device dock-device-xy-synth col-2">
+          <div class="dock-icon-active-dot"></div>
+        </div>
 
-      <div class="dock-icon dock-device dock-device-piano col-2">
-        <div class="dock-icon-active-dot"></div>
-      </div>
+        <div class="dock-icon dock-device dock-device-piano col-2">
+          <div class="dock-icon-active-dot"></div>
+        </div>
+      </section>
 
       <div class="dock-icon dock-menu col-2">
         menu
@@ -142,6 +148,7 @@
       <script src="scripts/audio/audio.core.js"></script>
       <!-- devices -->
       <script src="scripts/devices/ui.device.js"></script>
+      <script src="scripts/devices/carousel.device.js"></script>
       <!-- endbuild -->
 </body>
 </html>
