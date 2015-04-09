@@ -26,9 +26,18 @@
 
       <div class="device">
         1
+
+        <button data-js-show="device-menu">
+          open menu
+        </button>
+
+        <!-- menu -->
         <div class="device-menu">
           menu
-        </div>
+          <button data-js-show="device-menu">
+            open menu
+          </button>
+        </div><!-- menu -->
       </div>
 
       <div class="device">
@@ -132,7 +141,7 @@
       <!-- build:js scripts/main.js -->
       <script src="scripts/audio/audio.core.js"></script>
       <!-- devices -->
-      <script src="scripts/devices/test.device.js"></script>
+      <script src="scripts/devices/ui.device.js"></script>
       <!-- endbuild -->
 </body>
 </html>

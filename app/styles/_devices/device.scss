@@ -11,7 +11,7 @@ $device-menu-bg: rgba(0, 0, 0, .8);
   // Device main setting menu
   .device-menu {
     @include fullscreen();
-    @include show();
+    @include js-show();
 
     background: $device-menu-bg;
 

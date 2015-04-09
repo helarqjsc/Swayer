@@ -39,7 +39,7 @@
 }
 
 // Show element when element has class `js-show`
-@mixin show() {
+@mixin js-show() {
   display: none;
 
   &.js-show {
