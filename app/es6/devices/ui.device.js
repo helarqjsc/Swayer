@@ -1,5 +1,7 @@
 /* jshint devel:true */
 
+'use strict';
+
 var Device = {
 
   // Device setting menu
@@ -14,6 +16,26 @@ var Device = {
         $elem.toggleClass('show');
       },
 
+  },
+
+  /**
+   * Append device
+   *
+   * @param {Object} append device icon of current device
+   */
+  append($el) {
+    // Device name
+    var device = $el.attr('add-device'),
+      // Workspace wrap with devices
+      $wrap = $('.workspace .wrap');
+
+    $wrap.append(`
+      <div class="device device-${device}">
+        ${device}
+      </div>`);
+
+    Dock.icon.append(device);
+    Carousel.bind();
   },
 
   /**
@@ -45,6 +67,11 @@ var Device = {
       var $el = $('.' + $(event.target).attr('show-device-menu'));
 
       this.menu.toggle($el);
+    });
+
+    // Append device
+    $('*[add-device]').on('click', () => {
+      this.append($(event.target));
     });
 
     // Delete device event

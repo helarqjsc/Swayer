@@ -17,6 +17,24 @@ var Device = {
     } },
 
   /**
+   * Append device
+   *
+   * @param {Object} append device icon of current device
+   */
+  append: function append($el) {
+    // Device name
+    var device = $el.attr('add-device'),
+
+    // Workspace wrap with devices
+    $wrap = $('.workspace .wrap');
+
+    $wrap.append('\n      <div class="device device-' + device + '">\n        ' + device + '\n      </div>');
+
+    Dock.icon.append(device);
+    Carousel.bind();
+  },
+
+  /**
    * Remove device
    *
    * @param {Object} delete button element of current device
@@ -48,6 +66,11 @@ var Device = {
       var $el = $('.' + $(event.target).attr('show-device-menu'));
 
       _this.menu.toggle($el);
+    });
+
+    // Append device
+    $('*[add-device]').on('click', function () {
+      _this.append($(event.target));
     });
 
     // Delete device event

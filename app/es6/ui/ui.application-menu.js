@@ -1,5 +1,7 @@
 /* jshint devel:true */
 
+'use strict';
+
 var ApplicationMenu = {
 
   render: {
@@ -7,16 +9,19 @@ var ApplicationMenu = {
     devices: ['skills', 'swayer'],
 
     DevicesList() {
+      // Append code and device name
       var code, device;
 
       for (var i in this.devices) {
-          device = this.devices[i];
-          code = `<div class="col-4">
-          <div class="device-icon ${device}"></div>
-          <p>
-            ${device}
-          </p>
-        </div>`;
+        device = this.devices[i];
+        code = `
+          <div class="col-4">
+            <div class="device-icon ${device}" 
+              add-device="${device}"></div>
+            <p>
+              ${device}
+            </p>
+          </div>`;
         $('.js-insert-devices').append(code);
       }
     },

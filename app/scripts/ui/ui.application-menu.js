@@ -9,11 +9,12 @@ var ApplicationMenu = {
     devices: ['skills', 'swayer'],
 
     DevicesList: function DevicesList() {
+      // Append code and device name
       var code, device;
 
       for (var i in this.devices) {
         device = this.devices[i];
-        code = '<div class="col-4">\n          <div class="device-icon ' + device + '"></div>\n          <p>\n            ' + device + '\n          </p>\n        </div>';
+        code = '\n          <div class="col-4">\n            <div class="device-icon ' + device + '" \n              add-device="' + device + '"></div>\n            <p>\n              ' + device + '\n            </p>\n          </div>';
         $('.js-insert-devices').append(code);
       }
     } },
