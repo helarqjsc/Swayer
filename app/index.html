@@ -19,23 +19,15 @@
   </head>
 
   <!-- to show menu: show-application-menu -->
-  <body class="show-application-menu">
+  <body class="">
   
   <div class="workspace">
     <div class="wrap">
 
       <div class="device device-skills">
-        <div class="js-pad audio col-2"
-          audio-file="1.mp3"
-          audio-duration="long"
-          audio-continue="oneshot">
-          1
-        </div>          
-        <div class="js-pad audio col-2"
-          audio-file="2.mp3"
-          audio-duration="short"
-          audio-continue="loop">
-          2
+        
+        <div class="skills-pads">
+
         </div>
 
         <button show-device-menu="device-menu">
@@ -139,12 +131,14 @@
       <!-- endbuild -->
 
       <!-- build:js scripts/main.js -->
+      <script src="scripts/ui/ui.hold.js"></script>
       <script src="scripts/ui/ui.application-menu.js"></script>
       <script src="scripts/ui/ui.dock.js"></script>
       <script src="scripts/audio/audio.core.js"></script>
       <!-- devices -->
       <script src="scripts/devices/ui.device.js"></script>
       <script src="scripts/devices/carousel.device.js"></script>
+      <script src="scripts/devices/_skills/ui.skills.js"></script>
       <!-- endbuild -->
 </body>
 </html>

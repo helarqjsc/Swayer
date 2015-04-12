@@ -39,7 +39,8 @@ var Carousel = {
     // Show indicator on active device icon
     $('.js-device-carousel .dock-device')
       // Before hide indicators
-      .removeClass('show-device-indicator').eq(index).addClass('show-device-indicator');
+      .removeClass('show-device-indicator')
+      .eq(index).addClass('show-device-indicator');
   },
 
   /**

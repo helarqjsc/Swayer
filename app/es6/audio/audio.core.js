@@ -92,6 +92,23 @@ var Audio = {
   },
 
   /**
+   * Refresh (rebind) audio
+   */
+  refresh() {
+    // For each audio element
+    $('.audio').each(function(i) {
+      var file = $(this).attr('audio-file');
+
+      // Create context...
+      Audio.createContext(i);
+      // ...and set file
+      Audio.setFile(i, file);
+    });
+
+    Audio.bind();
+  },
+
+  /**
    * Bind event on audio elemet
    *
    * Touch start and end
@@ -123,17 +140,7 @@ var Audio = {
    */
   init() {
     $(window).load(() => {
-      // For each audio element
-      $('.audio').each(function(i) {
-        var file = $(this).attr('audio-file');
-
-        // Create context...
-        Audio.createContext(i);
-        // ...and set file
-        Audio.setFile(i, file);
-      });
-
-      Audio.bind();
+      this.refresh();
     });
   }
 };
