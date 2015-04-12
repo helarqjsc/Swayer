@@ -17,6 +17,26 @@ var Device = {
     } },
 
   /**
+   * Remove device
+   *
+   * @param {Object} delete button element of current device
+   */
+  del: function del($el) {
+    var // Current device
+    $device = $el.closest('.device'),
+
+    // Device index
+    index = $device.index(),
+
+    // Icon in Dock
+    $icon = $('.dock .dock-device').eq(index);
+
+    // Remove device and icon
+    $device.remove();
+    $icon.remove();
+  },
+
+  /**
    * Bind
    */
   bind: function bind() {
@@ -24,11 +44,15 @@ var Device = {
 
     // Event to show device menu
     $('*[show-device-menu]').on('click', function () {
-
       // Get element from attr `data-js-show`
       var $el = $('.' + $(event.target).attr('show-device-menu'));
 
       _this.menu.toggle($el);
+    });
+
+    // Delete device event
+    $('.js-delete-device').on('click', function () {
+      _this.del($(event.target));
     });
   },
 
