@@ -2,6 +2,10 @@
 $application-menu-bg: rgba(0, 0, 0, .3);
 $blur-radius: 10px;
 
+// Icons
+$icon-radius: 4vw;
+$icon-size: 20vw;
+
 // Change body class when show menu
 body {
 
@@ -27,4 +31,31 @@ body {
   display: none;
 
   background: $application-menu-bg;
+
+  // Devices list 
+  .application-menu-devices-list {
+    
+    // Col
+    .col-4 {
+      @extend .text-center;
+      
+      // Device icon
+      .device-icon {
+        border-radius: $icon-radius;
+
+        width: $icon-size; 
+        height: $icon-size;
+
+        display: inline-block;
+        
+        &.skills {
+          @include device-skills-icon()
+        }
+
+        &.swayer {
+          @include device-swayer-icon()
+        }
+      }
+    }
+  }
 }

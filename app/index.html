@@ -19,7 +19,7 @@
   </head>
 
   <!-- to show menu: show-application-menu -->
-  <body class="">
+  <body class="show-application-menu">
   
   <div class="workspace">
     <div class="wrap">
@@ -62,42 +62,6 @@
       <div class="device">
         3
       </div>
-      
-      <!-- <div class="container">
-        <div class="row">
-
-          <div class="device col-12">
-            <div class="js-pad audio col-2"
-              audio-file="1.mp3"
-              audio-duration="long"
-              audio-continue="oneshot">
-              1
-            </div>          
-            <div class="js-pad audio col-2"
-              audio-file="2.mp3"
-              audio-duration="short"
-              audio-continue="loop">
-              2
-            </div>
-          </div>
-
-          <div class="device col-12">
-            <div class="js-pad audio col-2"
-              audio-file="1.mp3"
-              audio-duration="long"
-              audio-continue="oneshot">
-              1
-            </div>          
-            <div class="js-pad audio col-2"
-              audio-file="2.mp3"
-              audio-duration="short"
-              audio-continue="loop">
-              2
-            </div>
-          </div> -->
-
-        </div><!-- row -->
-      </div><!-- container -->
 
     </div><!-- wrap -->
   </div><!-- workspace-->
@@ -118,25 +82,48 @@
           <div class="dock-icon-active-dot"></div>
         </div>
         
-        <div class="dock-icon dock-device dock-device-xy-synth col-2">
-          <div class="dock-icon-active-dot"></div>
-        </div>
-
-        <div class="dock-icon dock-device dock-device-piano col-2">
+        <div class="dock-icon dock-device dock-device-swayer col-2">
           <div class="dock-icon-active-dot"></div>
         </div>
       </section>
 
-      <div class="dock-icon dock-menu col-2">
+      <div class="dock-icon dock-menu js-toggle-menu col-2">
         menu
       </div><!-- menu -->
 
     </div><!-- row -->
   </div><!-- dock -->
 
-  <div class="application-menu">
-    12
-  </div><!-- menu -->
+  <section class="application-menu">
+    
+    <!-- list -->
+    <section class="application-menu-devices-list">
+      <div class="row js-insert-devices">
+
+        <!-- <div class="col-4">
+          <div class="device-icon swayer">
+            1
+          </div>
+          <p>
+            as
+          </p>
+        </div>
+        <div class="col-4">
+          <div class="device-icon swayer">
+            1
+          </div>
+          <p>
+            as
+          </p>
+        </div> -->
+
+      </div><!-- row -->
+    </section><!-- list -->
+
+    <button class="js-toggle-menu">
+      Close menu
+    </button>
+  </section><!-- menu -->
     
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -160,6 +147,7 @@
       <!-- endbuild -->
 
       <!-- build:js scripts/main.js -->
+      <script src="scripts/ui/ui.application-menu.js"></script>
       <script src="scripts/ui/ui.dock.js"></script>
       <script src="scripts/audio/audio.core.js"></script>
       <!-- devices -->

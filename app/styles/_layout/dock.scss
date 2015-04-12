@@ -48,14 +48,9 @@ $icon-margin: 2vw;
         @include device-skills-icon();
       }
 
-      // XY synth
-      &.dock-device-xy-synth {
-        background: green;
-      }
-
-      // Piano
-      &.dock-device-piano {
-        background: #000;
+      // Swayer device
+      &.dock-device-swayer {
+        @include device-swayer-icon();
       }
     }
 

@@ -1,11 +1,19 @@
 // Grid
 @for $i from 1 through 12 {
-    .col-#{$i} {
-        @extend .col-xs-#{$i};
-        @extend .col-sm-#{$i};
-        @extend .col-md-#{$i};
-        @extend .col-lg-#{$i};
-    }
+  // Col
+  .col-#{$i} {
+    @extend .col-xs-#{$i};
+    @extend .col-sm-#{$i};
+    @extend .col-md-#{$i};
+    @extend .col-lg-#{$i};
+  }
+  // Offset
+  .col-offset-#{$i} {
+    @extend .col-xs-offset-#{$i};
+    @extend .col-sm-offset-#{$i};
+    @extend .col-md-offset-#{$i};
+    @extend .col-lg-offset-#{$i};
+  }
 }
 
 // Circle element
