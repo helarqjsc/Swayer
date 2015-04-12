@@ -1,25 +1,33 @@
 /* jshint devel:true */
 
-var dock = {
+'use strict';
+
+var Dock = {
 
   // Lock dock default false
   lock: false,
 
-  bind: function() {
-    'use strict';
+  /**
+   * Bind
+   */
+  bind: function bind() {
+    var _this = this;
 
-    $('.dock-lock').on('click', function() {
-      dock.lock = !dock.lock ? true : false;
+    $('.dock-lock').on('click', function () {
+      _this.lock = !_this.lock ? true : false;
+      console.log(_this.lock);
     });
   },
 
-  init: (function() {
-    'use strict';
+  /**
+   * Init
+   */
+  init: function init() {
+    var _this2 = this;
 
-    window.onload = function() {
-      dock.bind();
-    };
-    
-  }())
+    $(window).load(function () {
+      _this2.bind();
+    });
+  } };
 
-};
+Dock.init();

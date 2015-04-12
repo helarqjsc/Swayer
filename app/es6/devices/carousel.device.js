@@ -15,12 +15,11 @@ var Carousel = {
    *
    * @param {Integer} index of device
    */
-  animate: function animate(index) {
+  animate(index) {
     var // Wrap with devices
-    $wrap = $('.workspace .wrap'),
-
-    // Window width
-    width = $(window).width();
+      $wrap = $('.workspace .wrap'),
+      // Window width
+      width = $(window).width();
 
     // Animate
     $wrap.animate({
@@ -36,20 +35,20 @@ var Carousel = {
    *
    * @param {Integer} index of device icon in dock
    */
-  showIconIndicator: function showIconIndicator(index) {
+  showIconIndicator(index) {
     // Show indicator on active device icon
     $('.js-device-carousel .dock-device')
-    // Before hide indicators
-    .removeClass('show-device-indicator').eq(index).addClass('show-device-indicator');
+      // Before hide indicators
+      .removeClass('show-device-indicator').eq(index).addClass('show-device-indicator');
   },
 
   /**
    * Bind
    */
-  bind: function bind() {
+  bind() {
     var _this = this;
     // Event to show device
-    $('.js-device-carousel .dock-device').on('click', function () {
+    $('.js-device-carousel .dock-device').on('click', function() {
       _this.animate($(this).index());
     });
   },
@@ -57,13 +56,13 @@ var Carousel = {
   /**
    * Init
    */
-  init: function init() {
-    var _this = this;
-
-    $(window).load(function () {
-      _this.bind();
-      _this.showIconIndicator(_this.deviceIndex);
+  init() {
+    $(window).load(() => {
+      this.bind();
+      this.showIconIndicator(this.deviceIndex);
     });
-  } };
+  },
+
+};
 
 Carousel.init();

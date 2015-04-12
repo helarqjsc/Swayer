@@ -1,7 +1,5 @@
 /* jshint devel:true */
 
-'use strict';
-
 var Device = {
 
   // Device setting menu
@@ -12,35 +10,37 @@ var Device = {
      *
      * @param {String} element class to show/hide
      */
-    toggle: function toggle($elem) {
+    toggle($elem) {
       $elem.toggleClass('show');
-    } },
+    },
+
+  },
 
   /**
    * Bind
    */
-  bind: function bind() {
-    var _this = this;
+  bind() {
 
     // Event to show device menu
-    $('*[show-device-menu]').on('click', function () {
+    $('*[show-device-menu]').on('click', () => {
 
       // Get element from attr `data-js-show`
-      var $el = $('.' + $(_this).attr('show-device-menu'));
+      var $el = $('.' + $(this).attr('show-device-menu'));
 
-      _this.menu.toggle($el);
+      this.menu.toggle($el);
     });
+
   },
 
   /**
    * Init
    */
-  init: function init() {
-    var _this2 = this;
-
-    $(window).load(function () {
-      _this2.bind();
+  init() {
+    $(window).load(() => {
+      this.bind();
     });
-  } };
+  },
+
+};
 
 Device.init();
