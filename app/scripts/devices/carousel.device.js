@@ -48,9 +48,13 @@ var Carousel = {
    */
   bind: function bind() {
     var _this = this;
+
     // Event to show device
     $('.js-device-carousel .dock-device').on('click', function () {
-      _this.animate($(this).index());
+      // Animate if Dock is unlocked
+      if (!Dock.lock) {
+        _this.animate($(event.target).index());
+      }
     });
   },
 
@@ -58,11 +62,11 @@ var Carousel = {
    * Init
    */
   init: function init() {
-    var _this = this;
+    var _this2 = this;
 
     $(window).load(function () {
-      _this.bind();
-      _this.showIconIndicator(_this.deviceIndex);
+      _this2.bind();
+      _this2.showIconIndicator(_this2.deviceIndex);
     });
   } };
 

@@ -2,7 +2,7 @@
 
 'use strict';
 
-var audio = {
+var Audio = {
 
   // AudioContext sources
   sources: [],
@@ -17,8 +17,6 @@ var audio = {
    * @param {Integer} Number of array
    */
   createContext: function createContext(i) {
-    'use strict';
-
     this.contexts[i] = new webkitAudioContext();
   },
 
@@ -29,8 +27,6 @@ var audio = {
    * @param {String} File name
    */
   setFile: function setFile(num, file) {
-    'use strict';
-
     var req = [];
 
     req[num] = new XMLHttpRequest();
@@ -39,7 +35,7 @@ var audio = {
     req[num].responseType = 'arraybuffer';
 
     req[num].addEventListener('load', function (e) {
-      audio.setBuffer(e, num);
+      Audio.setBuffer(e, num);
     }, false);
 
     req[num].send();
@@ -52,8 +48,6 @@ var audio = {
    * @param {Integer} Number of context
    */
   setBuffer: function setBuffer(e, i) {
-    'use strict';
-
     var req = e.target;
 
     this.buffers[req.soundName] = this.contexts[i].createBuffer(req.response, false);
@@ -67,8 +61,6 @@ var audio = {
    * @param {Integer} Number of array
    */
   setOptions: function setOptions(n) {
-    'use strict';
-
     var vol = this.contexts[n].createGainNode();
 
     this.sources[n] = this.contexts[n].createBufferSource();
@@ -85,10 +77,7 @@ var audio = {
    * @param {Integer} Number of array
    */
   play: function play(n, loop) {
-    'use strict';
-
     this.setOptions(n);
-    console.log(loop);
     this.sources[n].loop = loop;
     this.sources[n].noteOn(0);
   },
@@ -99,8 +88,6 @@ var audio = {
    * @param {Integer} Number of array
    */
   stop: function stop(n) {
-    'use strict';
-
     this.sources[n].noteOff(0);
   },
 
@@ -110,8 +97,6 @@ var audio = {
    * Touch start and end
    */
   bind: function bind() {
-    'use strict';
-
     var $elem = $('.js-pad'),
         loop; // loop or not sample
 
@@ -119,40 +104,38 @@ var audio = {
     // Event to play
     .on('mousedown', function () {
       // Check loop or not sample
-      loop = false;
-      if ($(this).attr('audio-continue') == 'loop') {
-        loop = true;
-      }
+      loop = $(event.target).attr('audio-continue') === 'loop' ? true : false;
       // Play
-      audio.play($(this).index(), loop);
+      Audio.play($(event.target).index(), loop);
     })
     // Event to stop
     .on('mouseup', function () {
-      var duration = $(this).attr('audio-duration');
+      var duration = $(event.target).attr('audio-duration');
 
       if (duration === 'short') {
-        audio.stop($(this).index());
+        Audio.stop($(event.target).index());
       }
     });
   },
 
   /**
-   * Init module
+   * Init
    */
-  init: (function () {
-    'use strict';
-
+  init: function init() {
     $(window).load(function () {
       // For each audio element
       $('.audio').each(function (i) {
         var file = $(this).attr('audio-file');
 
         // Create context...
-        audio.createContext(i);
+        Audio.createContext(i);
         // ...and set file
-        audio.setFile(i, file);
+        Audio.setFile(i, file);
       });
 
-      audio.bind();
+      Audio.bind();
     });
-  })() };
+  }
+};
+
+Audio.init();

@@ -25,7 +25,7 @@ var Device = {
     $('*[show-device-menu]').on('click', () => {
 
       // Get element from attr `data-js-show`
-      var $el = $('.' + $(this).attr('show-device-menu'));
+      var $el = $('.' + $(event.target).attr('show-device-menu'));
 
       this.menu.toggle($el);
     });

@@ -46,10 +46,12 @@ var Carousel = {
    * Bind
    */
   bind() {
-    var _this = this;
     // Event to show device
-    $('.js-device-carousel .dock-device').on('click', function() {
-      _this.animate($(this).index());
+    $('.js-device-carousel .dock-device').on('click', () => {
+      // Animate if Dock is unlocked
+      if (!Dock.lock) {
+        this.animate($(event.target).index());
+      }
     });
   },
 

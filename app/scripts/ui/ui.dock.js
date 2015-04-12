@@ -15,7 +15,6 @@ var Dock = {
 
     $('.dock-lock').on('click', function () {
       _this.lock = !_this.lock ? true : false;
-      console.log(_this.lock);
     });
   },
 
