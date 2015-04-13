@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 100em 584.2em;
+    background-size: 100em 323.8em;
 }
 
 .no-svg .icon:before {
@@ -33,21 +33,39 @@
     height: 84.19em;
 }
 
-.icon.random-one:before {
+.icon.logo:before {
     background-position: 0em -284.2em;
-    width: 100em;
-    height: 100em;
+    width: 5em;
+    height: 5em;
+}
+
+.icon.menu:before {
+    background-position: 0em -289.2em;
+    width: 5em;
+    height: 5em;
+}
+
+.icon.random-all:before {
+    background-position: 0em -294.2em;
+    width: 5em;
+    height: 5em;
+}
+
+.icon.random-one:before {
+    background-position: 0em -299.2em;
+    width: 5em;
+    height: 5em;
 }
 
 .icon.repeat:before {
-    background-position: 0em -384.2em;
-    width: 100em;
-    height: 100em;
+    background-position: 0em -304.2em;
+    width: 9.6em;
+    height: 9.6em;
 }
 
 .icon.volume:before {
-    background-position: 0em -484.2em;
-    width: 100em;
-    height: 100em;
+    background-position: 0em -313.8em;
+    width: 10em;
+    height: 10em;
 }
 

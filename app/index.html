@@ -24,9 +24,29 @@
   <div class="workspace">
     <div class="wrap">
 
-      <div class="device device-skills">
+      <section class="device device-skills">
         
-        <div class="skills-pads"></div>
+        <section class="skills-header">
+          <div class="container">
+            <div class="rows">
+
+              <div class="col-4 text-left">
+                <div class="icon menu"></div>
+              </div>
+
+              <div class="col-4 text-center">
+                <div class="icon random-all"></div>
+              </div>
+
+              <div class="col-4 text-right">
+                <div class="icon random-one"></div>
+              </div>
+
+            </div><!-- row -->
+          </div><!-- container -->
+        </section><!-- header -->
+
+        <section class="skills-pads"></section>
 
         <button show-device-menu="device-menu">
           open menu
@@ -37,7 +57,7 @@
         </button>
 
         <!-- menu -->
-        <div class="device-menu show">
+        <section class="device-menu">
           
           <div class="container customize-pads-grid js-customize-pads-grid">
             <div class="row">
@@ -68,8 +88,9 @@
           <button show-device-menu="device-menu">
             Close
           </button>
-        </div><!-- menu -->
-      </div>
+        </section><!-- menu -->
+
+      </section><!-- device -->
 
     </div><!-- wrap -->
   </div><!-- workspace-->
