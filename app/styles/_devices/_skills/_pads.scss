@@ -1,0 +1,124 @@
+@mixin pad-design() {
+
+  border-radius: 5px;
+  -webkit-transform: scale(0.9);
+
+  float: left;
+  
+  background: #FFF;
+
+  transform-style: preserve-3d;
+  
+  // When finger on pad
+  &.hold {
+    -webkit-transform: scale(0.87);
+  }
+  
+  // Text on pads
+  p {
+    color: #999;
+    position: absolute;
+
+    font-size: 10px;
+
+    margin-left: 10px;
+  }
+  
+  // When we change one pad
+  &.pad-wants-to-change {
+
+    img.refresh {
+      opacity: 1;
+    }
+  }
+
+  &.refresh-one {
+
+    img.refresh {
+      -webkit-transform: rotateZ(360deg);
+      transition: 0.7s linear;
+      opacity: 1;
+    }
+  }
+  
+  // random image
+  img.refresh {
+    right: 5px;
+
+    opacity: 0;
+
+    position: absolute;
+
+    display: block;
+
+    margin: 10px;
+    width: 20px;
+  }
+
+  .effects-block {
+    position: absolute;
+    bottom: 10px;
+
+    img.effect {
+      margin-left: 10px;
+
+      width: 20px;
+
+      display: none;
+
+      &.show {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// Pads
+.skills-pads {
+  flex-direction: row;
+
+  transition: 0.3s -webkit-filter;
+  -webkit-perspective: 1000;
+
+  .pad {
+    @include pad-design();
+
+    @mixin animation($startDuration, $endDuration) {
+      opacity: 1;
+
+      transition: -webkit-transform, opacity $startDuration linear;
+
+      &.refresh {
+        opacity: 0;
+        transition: opacity $endDuration linear;
+
+        -webkit-transform: rotateZ(180deg);
+        transition: -webkit-transform, opacity $endDuration linear;
+      }
+    }
+    
+    // Set animation time
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        @include animation($i * 0.1s, ($i / 2) * 0.1s);
+      }
+    }
+
+    &.refresh {
+
+      .effects-block, p {
+        display: none;
+      }
+    }
+    
+    // Pad height
+
+    $height: 52rem;
+
+    @for $i from 1 through 6 {
+      &.pad-row-#{$i} {
+        height: $height / $i;
+      }
+    }
+  }
+}

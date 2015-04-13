@@ -26,9 +26,7 @@
 
       <div class="device device-skills">
         
-        <div class="skills-pads">
-
-        </div>
+        <div class="skills-pads"></div>
 
         <button show-device-menu="device-menu">
           open menu
@@ -39,18 +37,43 @@
         </button>
 
         <!-- menu -->
-        <div class="device-menu">
-          menu
+        <div class="device-menu show">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1>
+                  Grid
+                </h1>
+              </div>
+              <div class="col-6 js-skills-cols">
+                1
+              </div>
+              <div class="col-6 js-skills-rows">
+                1
+              </div>
+            </div>
+          </div>
+
           <button show-device-menu="device-menu">
-            open menu
+            Close
           </button>
         </div><!-- menu -->
       </div>
 
     </div><!-- wrap -->
   </div><!-- workspace-->
+  
 
-  <div class="dock container">
+  <!-- menu
+  <div class="device-menu show">
+    menu
+    <button show-device-menu="device-menu">
+      open menu
+    </button>
+  </div> menu -->
+
+  <section class="dock container">
     <div class="row">
       
       <div class="dock-icon dock-lock col-2">
@@ -76,7 +99,8 @@
       </div><!-- menu -->
 
     </div><!-- row -->
-  </div><!-- dock -->
+  </section><!-- dock -->
+
 
   <section class="application-menu">
     
@@ -141,7 +165,8 @@
       <script src="scripts/devices/carousel.device.js"></script>
       <!-- skills -->
       <script src="scripts/devices/_skills/pad-patterns.skills.js"></script>
-      <script src="scripts/devices/_skills/ui.skills.js"></script>
+      <script src="scripts/devices/_skills/pads.skills.js"></script>
+      <script src="scripts/devices/_skills/menu.skills.js"></script>
       <!-- endbuild -->
 </body>
 </html>

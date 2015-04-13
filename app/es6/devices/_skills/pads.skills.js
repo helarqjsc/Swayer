@@ -20,7 +20,7 @@ var Skills = {
      * @return {Integer} file number
      */
     getRndFile(kind) {
-        // Total audio files in folder 
+        // Total audio files in folder
         var totalFilesInFolder = skillsSamples[kind];
 
         return Math.floor(Math.random() * (totalFilesInFolder - 1)) + 1;
@@ -150,9 +150,9 @@ var Skills = {
    */
   bind() {
 
-    // 
+    //
     $('.class').on('click', () => {
-      // 
+      //
     });
 
   },

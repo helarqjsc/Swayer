@@ -34,15 +34,6 @@ $icon-margin: 2vw;
     // Device icons
     &.dock-device {
       
-      // Devices      
-      // $devices: "skills", "swayer";
-      
-      // @for $i from 1 through length($devices) {
-      //   &.dock-device-#{nth($devices, $i)} {
-      //     @extented .device-#{nth($devices, $i)}-icon;
-      //   }
-      // }
-      
       // Skills device
       &.dock-device-skills {
         @include device-skills-icon();
