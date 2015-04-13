@@ -4,29 +4,14 @@
 
 var SkillsMenu = {
 
-  grid: {
-
-    // pos: {
-    //   startX: 0,
-    //   startY: 0,
-    //   currentX: 0,
-    //   currentY: 0,
-    // },
-
-    // start(e) {
-    //   this.pos.startX = e.pageX;
-    //   this.pos.startY = e.pageY;
-    //   // console.log('start')
-    // },
-
-    change: function change(e) {},
-
-    end: function end(e) {} },
-
   /**
    * Bind
    */
   bind: function bind() {
+
+    $('.js-skills-random-all').on('click', function (e) {
+      Skills.render.pads($(event.target));
+    });
 
     //
     $('.js-customize-pads-grid').on('mousedown', function (e) {}).on('mousemove', function (e) {}).on('mouseup', function (e) {});
@@ -44,10 +29,6 @@ var SkillsMenu = {
   } };
 
 SkillsMenu.init();
-
-// this.pos.startX = 0;
-// this.pos.startY = 0;
-// console.log('end')
 
 // SkillsMenu.grid.start(e);
 

@@ -31,11 +31,12 @@
             <div class="rows">
 
               <div class="col-4 text-left">
-                <div class="icon menu"></div>
+                <div class="icon menu" 
+                  show-device-menu="device-menu"></div>
               </div>
 
               <div class="col-4 text-center">
-                <div class="icon random-all"></div>
+                <div class="icon random-all js-skills-random-all"></div>
               </div>
 
               <div class="col-4 text-right">
@@ -47,14 +48,6 @@
         </section><!-- header -->
 
         <section class="skills-pads"></section>
-
-        <button show-device-menu="device-menu">
-          open menu
-        </button>
-
-        <button class="js-delete-device">
-          delete device
-        </button>
 
         <!-- menu -->
         <section class="device-menu">
@@ -88,6 +81,75 @@
           <button show-device-menu="device-menu">
             Close
           </button>
+
+          <button class="js-delete-device">
+            delete device
+          </button>
+        </section><!-- menu -->
+
+      </section><!-- device -->
+
+      <section class="device device-skills">
+        
+        <section class="skills-header">
+          <div class="container">
+            <div class="rows">
+
+              <div class="col-4 text-left">
+                <div class="icon menu" 
+                  show-device-menu="device-menu"></div>
+              </div>
+
+              <div class="col-4 text-center">
+                <div class="icon random-all js-skills-random-all"></div>
+              </div>
+
+              <div class="col-4 text-right">
+                <div class="icon random-one"></div>
+              </div>
+
+            </div><!-- row -->
+          </div><!-- container -->
+        </section><!-- header -->
+
+        <section class="skills-pads"></section>
+
+        <!-- menu -->
+        <section class="device-menu">
+          
+          <div class="container customize-pads-grid js-customize-pads-grid">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1>
+                  Grid
+                </h1>
+              </div>
+              <div class="col-6 customize-cols js-skills-cols">
+                <p class="digit">
+                  3
+                </p>
+                <p class="col">
+                  Col
+                </p>
+              </div>
+              <div class="col-6 customize-rows js-skills-rows">
+                <p class="digit">
+                  4
+                </p>
+                <p class="row">
+                  Row
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button show-device-menu="device-menu">
+            Close
+          </button>
+
+          <button class="js-delete-device">
+            delete device
+          </button>
         </section><!-- menu -->
 
       </section><!-- device -->
@@ -116,6 +178,10 @@
       </div><!-- add device -->
       
       <section class="js-device-carousel">
+        <div class="dock-icon dock-device dock-device-skills active col-2">
+          <div class="dock-icon-active-dot"></div>
+        </div>
+
         <div class="dock-icon dock-device dock-device-skills active col-2">
           <div class="dock-icon-active-dot"></div>
         </div>

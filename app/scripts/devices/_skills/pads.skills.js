@@ -54,26 +54,49 @@ var Skills = {
   // Render
   render: {
 
-    // Pads collums
-    cols: 4,
-    // Pads rows
-    rows: 4,
+    cols: 4, // Pads collums
+    rows: 4, // Pads rows
 
     // Render pads surface
-    pads: function pads() {
-      // Bootstrap col size
+    pads: function pads($elem) {
+
+      // Current device and pads
+      var $device, $pads;
+
+      if ($elem !== undefined) {
+
+        $device = $elem.closest('.device-skills');
+        $pads = $device.find('.skills-pads');
+      } else if ($elem === undefined) {
+
+        $device = $('.device-skills');
+        $pads = $('.skills-pads');
+      }
+
+      this.appendPads($pads);
+
+      $device.css('background', this.getRandomRGBA());
+
+      // After creating all pads
+      // we have to rebind events
+      Audio.refresh();
+
+      // Refresh (rebind) touch event on the pads
+      Hold.refresh();
+    },
+
+    appendPads: function appendPads($pads) {
+
       var col = 12 / this.cols,
-
-      // Full path to audio file
+          // Bootstrap col size
       file = '',
-
-      // Sample kind
+          // Full path to audio file
       kind = '',
+          // Sample kind
+      show = 'show'; // Class to show labels on the pads
 
-      // Class to show labels on the pads
-      show = 'show';
-
-      $('.skills-pads').html('');
+      // Clear before append
+      $pads.html('');
 
       // For each pad
       for (var i = 0; i < this.rows * this.cols; i++) {
@@ -91,18 +114,8 @@ var Skills = {
         }
 
         // Append one pad
-        $('.skills-pads').append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n          </div>');
-      }
-
-      // After creating all pads
-      // we have to rebind events
-      Audio.refresh();
-
-      // Refresh (rebind) touch event on the pads
-      Hold.refresh();
-
-      // Set background color
-      this.setBgColor();
+        $pads.append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n          </div>');
+      };
     },
 
     /**
@@ -130,18 +143,7 @@ var Skills = {
       blue = this.getRandomColor();
 
       return rgb = 'rgba(' + red + ', ' + green + ', ' + blue + ', 1)';
-    },
-
-    /**
-     * Set bacground color
-     */
-    setBgColor: function setBgColor() {
-      var bg = this.getRandomRGBA();
-
-      $('.device-skills').css('background', bg);
-    }
-
-  },
+    } },
 
   /**
    * Bind

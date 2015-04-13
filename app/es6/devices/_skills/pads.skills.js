@@ -55,24 +55,49 @@ var Skills = {
   // Render
   render: {
 
-    // Pads collums
-    cols: 4,
-    // Pads rows
-    rows: 4,
+    cols: 4, // Pads collums
+    rows: 4, // Pads rows
 
     // Render pads surface
-    pads() {
-      // Bootstrap col size
-      var col = 12 / this.cols,
-        // Full path to audio file
-        file = '',
-        // Sample kind
-        kind = '',
-        // Class to show labels on the pads
-        show = 'show';
+    pads($elem) {
 
-      $('.skills-pads').html('');
+      // Current device and pads
+      var $device, $pads;
+
+      if ($elem !== undefined) {
+
+        $device = $elem.closest('.device-skills');
+        $pads = $device.find('.skills-pads');
+
+      } else if ($elem === undefined) {
+
+        $device = $('.device-skills');
+        $pads = $('.skills-pads');
+
+      }
+
+      this.appendPads($pads);
+
+      $device.css('background', this.getRandomRGBA());
+
+      // After creating all pads
+      // we have to rebind events
+      Audio.refresh();
+
+      // Refresh (rebind) touch event on the pads
+      Hold.refresh();
+    },
+
+    appendPads($pads) {
       
+      var col = 12 / this.cols, // Bootstrap col size
+        file = '', // Full path to audio file
+        kind = '', // Sample kind
+        show = 'show'; // Class to show labels on the pads
+
+      // Clear before append
+      $pads.html('');
+
       // For each pad
       for (var i = 0; i < (this.rows * this.cols); i++) {
 
@@ -89,7 +114,7 @@ var Skills = {
         }
 
         // Append one pad
-        $('.skills-pads').append(`
+        $pads.append(`
           <div class="pad js-pad js-hold audio col-${col} pad-row-${this.rows}"
             audio-file="${file}"
             audio-duration="long"
@@ -97,18 +122,8 @@ var Skills = {
             <p class="${show}">
               ${kind}
             </p>
-          </div>`)
-      }
-
-      // After creating all pads
-      // we have to rebind events
-      Audio.refresh();
-
-      // Refresh (rebind) touch event on the pads
-      Hold.refresh();
-
-      // Set background color
-      this.setBgColor();
+          </div>`);
+      };
     },
 
     /**
@@ -135,15 +150,6 @@ var Skills = {
 
       return rgb = 'rgba(' + red + ', ' + green + ', ' + blue + ', 1)';
     },
-
-    /**
-     * Set bacground color
-     */
-    setBgColor() {
-      var bg = this.getRandomRGBA();
-
-      $('.device-skills').css('background', bg);
-    }
 
   },
 
