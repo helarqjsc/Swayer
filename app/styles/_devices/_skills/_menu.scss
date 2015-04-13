@@ -1,5 +1,21 @@
 // Skills device menu
-
 .device-menu {
   
+  // Customize pads grid
+  .customize-pads-grid {
+    
+    .customize-cols, .customize-rows {
+      border: 1px solid red;
+
+      padding: 20vw 0;
+
+      p.digit {
+        font-size: 48px;
+      }
+      
+      p.col, p.row {
+        font-size: 12px;
+      }
+    }
+  }
 }

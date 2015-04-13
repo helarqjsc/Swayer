@@ -71,6 +71,8 @@ var Skills = {
         // Class to show labels on the pads
         show = 'show';
 
+      $('.skills-pads').html('');
+      
       // For each pad
       for (var i = 0; i < (this.rows * this.cols); i++) {
 
