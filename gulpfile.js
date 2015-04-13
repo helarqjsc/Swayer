@@ -6,6 +6,7 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var babel = require('gulp-babel');
+var svgSprite = require("gulp-svg-sprites");
 
 gulp.task('es6', function() {
   return gulp.src('app/es6/**/*.js')
@@ -67,6 +68,12 @@ gulp.task('html', ['styles'], function() {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('sprites', function() {
+  return gulp.src('app/svg/**/*.svg')
+    .pipe(svgSprite())
+    .pipe(gulp.dest('app/styles/sprites'));
+});
+
 gulp.task('images', function() {
   return gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin({
@@ -108,7 +115,7 @@ gulp.task('samples', function() {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['es6', 'styles', 'fonts', 'samples'], function() {
+gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites'], function() {
   browserSync({
     notify: false,
     port: 9000,
@@ -153,7 +160,7 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['es6', 'html', 'images', 'fonts', 'extras', 'samples'], function() {
+gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples'], function() {
   return gulp.src('dist/**/*').pipe($.size({
     title: 'build',
     gzip: true

@@ -1,0 +1,53 @@
+.icon {
+    font-size: 10px;
+}
+
+.icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 100em 584.2em;
+}
+
+.no-svg .icon:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.icon.delay:before {
+    background-position: 0em 0em;
+    width: 100em;
+    height: 100em;
+}
+
+.icon.leo-1:before {
+    background-position: 0em -100em;
+    width: 69.951171875em;
+    height: 100em;
+}
+
+.icon.leo-2:before {
+    background-position: 0em -200em;
+    width: 59.529999999999994em;
+    height: 84.19em;
+}
+
+.icon.random-one:before {
+    background-position: 0em -284.2em;
+    width: 100em;
+    height: 100em;
+}
+
+.icon.repeat:before {
+    background-position: 0em -384.2em;
+    width: 100em;
+    height: 100em;
+}
+
+.icon.volume:before {
+    background-position: 0em -484.2em;
+    width: 100em;
+    height: 100em;
+}
+
