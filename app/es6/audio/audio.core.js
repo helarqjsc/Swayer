@@ -17,7 +17,7 @@ var Audio = {
    * @param {Integer} Number of array
    */
   createContext(i) {
-    this.contexts[i] = new webkitAudioContext();
+    this.contexts.push(new webkitAudioContext());
   },
 
   /**
@@ -95,6 +95,9 @@ var Audio = {
    * Refresh (rebind) audio
    */
   refresh() {
+    // Clear
+    Audio.contexts.length = 0;
+
     // For each audio element
     $('.audio').each(function(i) {
       var file = $(this).attr('audio-file');
@@ -114,23 +117,27 @@ var Audio = {
    * Touch start and end
    */
   bind() {
-    var $elem = $('.js-pad'),
-      loop; // loop or not sample
+    var loop, index, duration;
 
-    $elem
-    // Event to play
+    $('.js-pad')
+      // Event to play
       .on('mousedown', () => {
+
+        index = $('.js-pad').index($(event.target));
+
         // Check loop or not sample
         loop = ($(event.target).attr('audio-continue') === 'loop') ? true : false;
         // Play
-        Audio.play($(event.target).index(), loop);
+        Audio.play(index, loop);
       })
       // Event to stop
       .on('mouseup', () => {
-        var duration = $(event.target).attr('audio-duration');
+        duration = $(event.target).attr('audio-duration');
+
+        index = $('.js-pad').index($(event.target));
 
         if (duration === 'short') {
-          Audio.stop($(event.target).index());
+          Audio.stop(index);
         }
       });
   },
