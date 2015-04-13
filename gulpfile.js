@@ -10,7 +10,11 @@ var babel = require('gulp-babel');
 gulp.task('es6', function() {
   return gulp.src('app/es6/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest('app/scripts/'));
+    .on('error', console.error.bind(console))
+    .pipe(gulp.dest('app/scripts/'))
+     .pipe(reload({
+      stream: true
+    }));
 });
 
 gulp.task('styles', function() {
