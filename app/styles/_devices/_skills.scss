@@ -1,6 +1,10 @@
+// Vars
+$device-name: 'skills';
+
 // Device icon
 @mixin device-skills-icon() {
-  background: blue;
+  background: url(../svg/#{$device-name}/#{$device-name}-icon.svg);
+  
 }
 
 // Device

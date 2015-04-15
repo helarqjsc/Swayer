@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 100em 323.8em;
+    background-size: 100em 359.9em;
 }
 
 .no-svg .icon:before {
@@ -63,8 +63,14 @@
     height: 9.6em;
 }
 
-.icon.volume:before {
+.icon.skills-icon:before {
     background-position: 0em -313.8em;
+    width: 36.1em;
+    height: 36.1em;
+}
+
+.icon.volume:before {
+    background-position: 0em -349.9em;
     width: 10em;
     height: 10em;
 }

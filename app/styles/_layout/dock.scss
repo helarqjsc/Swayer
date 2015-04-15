@@ -3,6 +3,11 @@ $icon-radius: 4vw;
 $icon-size: 12.6666666667vw;
 $icon-margin: 2vw;
 
+@mixin icon($name) {
+  background: url(../svg/ui/#{$name}.svg);
+  background-size: $icon-size $icon-size !important;
+}
+
 // Dock
 .dock {
 
@@ -25,15 +30,18 @@ $icon-margin: 2vw;
         display: inline-block;
       }
     }
-
+  
     // Add device
     &.dock-add-device {
-      border: 1px solid #CCC;
+      @include icon('+');
     }
 
     // Device icons
     &.dock-device {
-      
+      overflow: hidden;
+
+      background-size: $icon-size $icon-size !important;
+
       // Skills device
       &.dock-device-skills {
         @include device-skills-icon();
@@ -71,6 +79,7 @@ $icon-margin: 2vw;
 
   // Menu icon
   .dock-menu {
-    background: blue;
+    @include icon('menu');
+    border: 1px solid rgba(0, 0, 0, .1);
   }
 }
