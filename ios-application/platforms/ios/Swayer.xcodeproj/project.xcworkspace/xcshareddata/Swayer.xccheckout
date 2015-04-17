@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A76D9D97-6109-4154-A071-4E3BBFCC3A3C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Swayer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</key>
+		<string>https://github.com/keske/Swayer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ios-application/platforms/ios/Swayer.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/keske/Swayer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Swayer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
