@@ -5,7 +5,8 @@ $icon-margin: 2vw;
 
 @mixin icon($name) {
   background: url(../svg/ui/#{$name}.svg);
-  background-size: $icon-size $icon-size !important;
+  @include bg-icons-square($icon-size);
+  border: 1px solid rgba(0, 0, 0, .1);
 }
 
 // Dock
@@ -18,8 +19,7 @@ $icon-margin: 2vw;
     border-radius: $icon-radius;
     text-align: center;
 
-    width: $icon-size; 
-    height: $icon-size;
+    @include square($icon-size);
 
     margin: $icon-margin;
   
@@ -38,8 +38,6 @@ $icon-margin: 2vw;
 
     // Device icons
     &.dock-device {
-      overflow: hidden;
-
       background-size: $icon-size $icon-size !important;
 
       // Skills device
@@ -66,7 +64,7 @@ $icon-margin: 2vw;
       width: $size;
       height: $size;
 
-      background: red;
+      background: black;
 
       margin-top: $icon-size + ($icon-margin / 2);
     }
@@ -74,12 +72,15 @@ $icon-margin: 2vw;
 
   // Lock icon
   .dock-lock {
-    background: blue;
+    @include icon('unlock');
+
+    &.lock {
+      @include icon('lock');
+    }
   }
 
   // Menu icon
   .dock-menu {
     @include icon('menu');
-    border: 1px solid rgba(0, 0, 0, .1);
   }
 }

@@ -8,69 +8,93 @@
     display: inline-block;
     background-image: url("../svg/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 100em 359.9em;
+    background-size: 100em 504.1em;
 }
 
 .no-svg .icon:before {
     background-image: url("../svg/sprite.png");
 }
 
-.icon.delay:before {
+.icon.+:before {
     background-position: 0em 0em;
+    width: 36.1em;
+    height: 36.1em;
+}
+
+.icon.delay:before {
+    background-position: 0em -36.1em;
     width: 100em;
     height: 100em;
 }
 
 .icon.leo-1:before {
-    background-position: 0em -100em;
+    background-position: 0em -136.1em;
     width: 69.951171875em;
     height: 100em;
 }
 
 .icon.leo-2:before {
-    background-position: 0em -200em;
+    background-position: 0em -236.1em;
     width: 59.529999999999994em;
     height: 84.19em;
 }
 
+.icon.lock:before {
+    background-position: 0em -320.3em;
+    width: 36.1em;
+    height: 36em;
+}
+
 .icon.logo:before {
-    background-position: 0em -284.2em;
+    background-position: 0em -356.3em;
     width: 5em;
     height: 5em;
 }
 
 .icon.menu:before {
-    background-position: 0em -289.2em;
-    width: 5em;
-    height: 5em;
+    background-position: 0em -361.3em;
+    width: 36.1em;
+    height: 36.1em;
 }
 
 .icon.random-all:before {
-    background-position: 0em -294.2em;
+    background-position: 0em -397.4em;
     width: 5em;
     height: 5em;
 }
 
 .icon.random-one:before {
-    background-position: 0em -299.2em;
+    background-position: 0em -402.4em;
     width: 5em;
     height: 5em;
 }
 
 .icon.repeat:before {
-    background-position: 0em -304.2em;
+    background-position: 0em -407.4em;
     width: 9.6em;
     height: 9.6em;
 }
 
 .icon.skills-icon:before {
-    background-position: 0em -313.8em;
+    background-position: 0em -417em;
     width: 36.1em;
     height: 36.1em;
 }
 
+.icon.skills-menu:before {
+    background-position: 0em -453.1em;
+    width: 5em;
+    height: 5em;
+}
+
+.icon.unlock:before {
+    background-position: 0em -458.1em;
+    width: 36em;
+    height: 36em;
+}
+
 .icon.volume:before {
-    background-position: 0em -349.9em;
+    background-position: 0em -494.1em;
     width: 10em;
     height: 10em;
 }

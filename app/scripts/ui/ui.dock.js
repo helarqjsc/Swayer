@@ -30,6 +30,7 @@ var Dock = {
 
     $('.dock-lock').on('click', function () {
       _this.lock = !_this.lock ? true : false;
+      $('.dock-lock').toggleClass('lock');
     });
   },
 

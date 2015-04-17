@@ -32,6 +32,7 @@ var Dock = {
   bind() {
     $('.dock-lock').on('click', () => {
       this.lock = !this.lock ? true : false;
+      $('.dock-lock').toggleClass('lock');
     });
   },
 

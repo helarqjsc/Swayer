@@ -21,6 +21,17 @@
   border-radius: 100%;
 }
 
+// Square
+// Width = height 
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin bg-icons-square($size) {
+  background-size: $size $size !important;
+}
+
 // Fullscreen element
 @mixin fullscreen() {
   -webkit-box-orient: vertical;

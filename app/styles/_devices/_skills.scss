@@ -4,7 +4,6 @@ $device-name: 'skills';
 // Device icon
 @mixin device-skills-icon() {
   background: url(../svg/#{$device-name}/#{$device-name}-icon.svg);
-  
 }
 
 // Device

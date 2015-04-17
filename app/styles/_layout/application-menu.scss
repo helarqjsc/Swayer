@@ -41,19 +41,19 @@ body {
       
       // Device icon
       .device-icon {
-        border-radius: $icon-radius;
+        @include square($icon-size);
+        @include bg-icons-square($icon-size);
 
-        width: $icon-size; 
-        height: $icon-size;
+        border-radius: $icon-radius;
 
         display: inline-block;
         
         &.skills {
-          @include device-skills-icon()
+          @include device-skills-icon();
         }
 
         &.swayer {
-          @include device-swayer-icon()
+          @include device-swayer-icon();
         }
       }
     }
