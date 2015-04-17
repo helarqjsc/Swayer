@@ -121,7 +121,7 @@ var Audio = {
 
     $('.js-pad')
     // Event to play
-    .on('mousedown', function () {
+    .on('touchstart', function () {
 
       index = $('.js-pad').index($(event.target));
 
@@ -131,7 +131,7 @@ var Audio = {
       Audio.play(index, loop);
     })
     // Event to stop
-    .on('mouseup', function () {
+    .on('touchend', function () {
       duration = $(event.target).attr('audio-duration');
 
       index = $('.js-pad').index($(event.target));

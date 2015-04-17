@@ -113,6 +113,14 @@ gulp.task('samples', function() {
   }).pipe(gulp.dest('ios-application/platforms/ios/www/samples'));
 });
 
+gulp.task('svg-sprite', function() {
+  return gulp.src([
+    'app/styles/sprites/**/*',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/styles/sprites'));
+});
+
 gulp.task('svg', function() {
   return gulp.src([
     'app/svg/**/*.svg',
@@ -123,7 +131,7 @@ gulp.task('svg', function() {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'ios-application/platforms/ios/www/']));
 
-gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg'], function() {
+gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-sprite'], function() {
   browserSync({
     notify: false,
     port: 9000,
@@ -168,7 +176,7 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples', 'svg'], function() {
+gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples', 'svg', 'svg-sprite'], function() {
   return gulp.src('ios-application/platforms/ios/www/**/*').pipe($.size({
     title: 'build',
     gzip: true
