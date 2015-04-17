@@ -65,7 +65,7 @@ gulp.task('html', ['styles'], function() {
       conditionals: true,
       loose: true
     })))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/'));
 });
 
 gulp.task('sprites', function() {
@@ -85,7 +85,7 @@ gulp.task('images', function() {
         cleanupIDs: false
       }]
     })))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/images'));
 });
 
 gulp.task('fonts', function() {
@@ -93,7 +93,7 @@ gulp.task('fonts', function() {
       filter: '**/*.{eot,svg,ttf,woff,woff2}'
     }).concat('app/fonts/**/*'))
     .pipe(gulp.dest('.tmp/fonts'))
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/fonts'));
 });
 
 gulp.task('extras', function() {
@@ -102,7 +102,7 @@ gulp.task('extras', function() {
     '!app/*.html'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/'));
 });
 
 gulp.task('samples', function() {
@@ -110,12 +110,20 @@ gulp.task('samples', function() {
     'app/samples/**/*.mp3',
   ], {
     dot: true
-  }).pipe(gulp.dest('dist/samples'));
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/samples'));
 });
 
-gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+gulp.task('svg', function() {
+  return gulp.src([
+    'app/svg/**/*.svg',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/svg'));
+});
 
-gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites'], function() {
+gulp.task('clean', require('del').bind(null, ['.tmp', 'ios-application/platforms/ios/www/']));
+
+gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg'], function() {
   browserSync({
     notify: false,
     port: 9000,
@@ -160,8 +168,8 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples'], function() {
-  return gulp.src('dist/**/*').pipe($.size({
+gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples', 'svg'], function() {
+  return gulp.src('ios-application/platforms/ios/www/**/*').pipe($.size({
     title: 'build',
     gzip: true
   }));
