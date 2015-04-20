@@ -4,7 +4,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+// var reload = browserSync.reload;
 var babel = require('gulp-babel');
 var svgSprite = require("gulp-svg-sprites");
 
@@ -13,9 +13,9 @@ gulp.task('es6', function() {
     .pipe(babel())
     .on('error', console.error.bind(console))
     .pipe(gulp.dest('app/scripts/'))
-    .pipe(reload({
-      stream: true
-    }));
+    // .pipe(reload({
+    //   stream: true
+    // }));
 });
 
 gulp.task('styles', function() {
@@ -34,20 +34,20 @@ gulp.task('styles', function() {
     ]))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe(reload({
-      stream: true
-    }));
+    // .pipe(reload({
+    //   stream: true
+    // }));
 });
 
 gulp.task('jshint', function() {
   return gulp.src('app/scripts/**/*.js')
-    .pipe(reload({
-      stream: true,
-      once: true
-    }))
+    // .pipe(reload({
+    //   stream: true,
+    //   once: true
+    // }))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+    // .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 gulp.task('html', ['styles'], function() {
@@ -133,6 +133,7 @@ gulp.task('clean', require('del').bind(null, ['.tmp', 'ios-application/platforms
 
 gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-sprite'], function() {
   browserSync({
+    browser: 'safari',
     notify: false,
     port: 9000,
     server: {
@@ -150,9 +151,9 @@ gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-
       'app/scripts/**/*.js',
       'app/images/**/*',
       '.tmp/fonts/**/*'
-    ])
-    .on('error', console.error.bind(console))
-    .on('change', reload);
+    ]);
+    // .on('error', console.error.bind(console))
+    // .on('change', reload);
 
   gulp.watch('app/es6/**/*.jsx', ['es6']);
   gulp.watch('app/styles/**/*.scss', ['styles']);

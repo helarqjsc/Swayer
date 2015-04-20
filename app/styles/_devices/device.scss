@@ -8,6 +8,8 @@ $device-menu-bg: rgba(0, 0, 0, .8);
   position: relative;
   overflow: hidden;
 
+  border: 1px solid red;
+
   // Device main setting menu
   .device-menu {
     @include fullscreen();
