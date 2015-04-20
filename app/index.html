@@ -20,250 +20,27 @@
 
   <!-- to show menu: show-application-menu -->
   <body class="">
-  
-  <div class="workspace">
-    <div class="wrap">
 
-      <section class="device device-skills">
-        
-        <section class="skills-header">
-          <div class="container">
-            <div class="rows">
-
-              <div class="col-4 text-left">
-                <div class="icon skills-menu" 
-                  show-device-menu="device-menu"></div>
-              </div>
-
-              <div class="col-4 text-center">
-                <div class="icon random-all js-skills-random-all"></div>
-              </div>
-
-              <div class="col-4 text-right">
-                <div class="icon random-one js-skills-random-one"></div>
-              </div>
-
-            </div><!-- row -->
-          </div><!-- container -->
-        </section><!-- header -->
-
-        <section class="skills-pads"></section>
-
-        <!-- menu -->
-        <section class="device-menu">
-          
-          <div class="container customize-pads-grid js-customize-pads-grid">
-            <div class="row">
-              <div class="col-12 text-center">
-                <h1>
-                  Grid
-                </h1>
-              </div>
-              <div class="col-6 customize-cols js-skills-cols">
-                <p class="digit">
-                  3
-                </p>
-                <p class="col">
-                  Col
-                </p>
-              </div>
-              <div class="col-6 customize-rows js-skills-rows">
-                <p class="digit">
-                  4
-                </p>
-                <p class="row">
-                  Row
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <button show-device-menu="device-menu">
-            Close
-          </button>
-
-          <button class="js-delete-device">
-            delete device
-          </button>
-        </section><!-- menu -->
-
-      </section><!-- device -->
-
-      <section class="device device-skills">
-        
-        <section class="skills-header">
-          <div class="container">
-            <div class="rows">
-
-              <div class="col-4 text-left">
-                <div class="icon skills-menu" 
-                  show-device-menu="device-menu"></div>
-              </div>
-
-              <div class="col-4 text-center">
-                <div class="icon random-all js-skills-random-all"></div>
-              </div>
-
-              <div class="col-4 text-right">
-                <div class="icon random-one"></div>
-              </div>
-
-            </div><!-- row -->
-          </div><!-- container -->
-        </section><!-- header -->
-
-        <section class="skills-pads"></section>
-
-        <!-- menu -->
-        <section class="device-menu">
-          
-          <div class="container customize-pads-grid js-customize-pads-grid">
-            <div class="row">
-              <div class="col-12 text-center">
-                <h1>
-                  Grid
-                </h1>
-              </div>
-              <div class="col-6 customize-cols js-skills-cols">
-                <p class="digit">
-                  3
-                </p>
-                <p class="col">
-                  Col
-                </p>
-              </div>
-              <div class="col-6 customize-rows js-skills-rows">
-                <p class="digit">
-                  4
-                </p>
-                <p class="row">
-                  Row
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <button show-device-menu="device-menu">
-            Close
-          </button>
-
-          <button class="js-delete-device">
-            delete device
-          </button>
-        </section><!-- menu -->
-
-      </section><!-- device -->
-
-    </div><!-- wrap -->
-  </div><!-- workspace-->
-  
-
-  <!-- menu
-  <div class="device-menu show">
-    menu
-    <button show-device-menu="device-menu">
-      open menu
-    </button>
-  </div> menu -->
-
-  <section class="dock container">
-    <div class="row">
-      
-      <div class="dock-icon dock-lock col-2">
-      </div><!-- lock icon -->
-
-      <div class="dock-icon col-2"></div>
-      
-      <div class="dock-icon dock-add-device col-2">
-      </div><!-- add device -->
-      
-      <section class="js-device-carousel">
-        <div class="dock-icon dock-device dock-device-skills show-device-indicator col-2">
-          <div class="dock-icon-active-dot"></div>
-        </div>
-
-        <div class="dock-icon dock-device dock-device-skills col-2">
-          <div class="dock-icon-active-dot"></div>
-        </div>
-      </section><!-- js-device-carousel -->
-
-      <div class="dock-icon dock-menu js-toggle-menu col-2">
-      </div><!-- menu -->
-
-    </div><!-- row -->
-  </section><!-- dock -->
-
-
-  <section class="application-menu">
-    
-    <!-- list -->
-    <section class="application-menu-devices-list container">
-      <div class="row js-insert-devices">
-
-        <!-- <div class="col-4">
-          <div class="device-icon swayer">
-            1
-          </div>
-          <p>
-            as
-          </p>
-        </div>
-        <div class="col-4">
-          <div class="device-icon swayer">
-            1
-          </div>
-          <p>
-            as
-          </p>
-        </div> -->
-
-      </div><!-- row -->
-    </section><!-- list -->
-
-    <button class="js-toggle-menu">
-      Close menu
-    </button>
-  </section><!-- menu -->
+  <div id="dock"></div>
     
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="/bower_components/react/react.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
       <!-- build:js scripts/plugins.js -->
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-      <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+
       <!-- endbuild -->
 
       <!-- build:js scripts/main.js -->
-      <!-- vendor -->
+      <!-- vendor 
       <script src="scripts/vendor/fastclick.js"></script>
       <script src="scripts/vendor/jgestures.js"></script>
+      -->
 
-      <!-- app -->
-      <script src="scripts/ui/ui.core.js"></script>
-      <script src="scripts/ui/ui.hold.js"></script>
-      <script src="scripts/ui/ui.application-menu.js"></script>
-      <script src="scripts/ui/ui.dock.js"></script>
-      <script src="scripts/audio/audio.core.js"></script>
-      <!-- devices -->
-      <script src="scripts/devices/ui.device.js"></script>
-      <script src="scripts/devices/carousel.device.js"></script>
-      <!-- skills -->
-      <script src="scripts/devices/_skills/pads.skills.js"></script>
-      <script src="scripts/devices/_skills/menu.skills.js"></script>
-      <!-- endbuild -->
+      <script src="scripts/layout/dock.layout.js"></script>
+
 </body>
 </html>

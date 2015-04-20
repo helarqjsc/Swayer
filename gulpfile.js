@@ -9,11 +9,11 @@ var babel = require('gulp-babel');
 var svgSprite = require("gulp-svg-sprites");
 
 gulp.task('es6', function() {
-  return gulp.src('app/es6/**/*.js')
+  return gulp.src('app/es6/**/*.jsx')
     .pipe(babel())
     .on('error', console.error.bind(console))
     .pipe(gulp.dest('app/scripts/'))
-     .pipe(reload({
+    .pipe(reload({
       stream: true
     }));
 });
@@ -145,14 +145,16 @@ gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-
 
   // watch for changes
   gulp.watch([
-    'app/*.html',
-    'app/es6/**/*.js',
-    'app/scripts/**/*.js',
-    'app/images/**/*',
-    '.tmp/fonts/**/*'
-  ]).on('change', reload);
+      'app/*.html',
+      'app/es6/**/*.jsx',
+      'app/scripts/**/*.js',
+      'app/images/**/*',
+      '.tmp/fonts/**/*'
+    ])
+    .on('error', console.error.bind(console))
+    .on('change', reload);
 
-  gulp.watch('app/es6/**/*.js', ['es6']);
+  gulp.watch('app/es6/**/*.jsx', ['es6']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
