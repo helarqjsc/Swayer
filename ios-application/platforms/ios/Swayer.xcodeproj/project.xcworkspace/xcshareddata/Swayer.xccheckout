@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A76D9D97-6109-4154-A071-4E3BBFCC3A3C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Swayer</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</key>
 		<string>https://github.com/keske/Swayer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ios-application/platforms/ios/Swayer.xcodeproj</string>
+	<string>ios-application/platforms/ios/Swayer.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A930B64834C7BE111CA583A8A3C9B7A0D998B3E1</key>

@@ -30,6 +30,9 @@ var padPatterns = {
 
 var Skills = {
 
+  // Shuffle one pad
+  shuffle: false,
+
   // Work with sample
   sample: {
 
@@ -95,6 +98,8 @@ var Skills = {
 
       this.appendPads($pads);
 
+      // console.log('render')
+
       $device.css('background', this.getRandomRGBA());
 
       // After creating all pads
@@ -103,6 +108,23 @@ var Skills = {
 
       // Refresh (rebind) touch event on the pads
       Hold.refresh();
+    },
+
+    shuffleOnePad: function shuffleOnePad($elem) {
+      var $device, $pads;
+
+      if ($elem !== undefined) {
+
+        $device = $elem.closest('.device-skills');
+        $pads = $device.find('.skills-pads');
+      } else if ($elem === undefined) {
+
+        $device = $('.device-skills');
+        $pads = $('.skills-pads');
+      }
+
+      $pads.find('.pad').addClass('pad-wants-to-change');
+      console.log($pads.find('.pad'));
     },
 
     appendPads: function appendPads($pads) {
@@ -134,7 +156,7 @@ var Skills = {
         }
 
         // Append one pad
-        $pads.append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n          </div>');
+        $pads.append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n            <img src="/svg/skills/random-one.svg" class="refresh" />\n          </div>');
       };
     },
 
