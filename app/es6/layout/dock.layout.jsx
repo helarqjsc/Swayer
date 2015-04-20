@@ -85,7 +85,10 @@ class DockIconIndicate extends React.Component {
 class DockApplicationMenu extends React.Component {
   render() {
     return (
-      React.createElement('div', {className: "dock-icon dock-menu js-toggle-menu col-2"})
+      <div 
+        className="dock-icon dock-menu js-toggle-menu col-2"
+        onClick={ApplicationMenu.show}
+      ></div>
     )
   }
 };

@@ -189,10 +189,7 @@ var DockApplicationMenu = (function (_React$Component7) {
   _createClass(DockApplicationMenu, [{
     key: 'render',
     value: function render() {
-      return React.createElement('div', {
-        className: 'dock-icon dock-menu js-toggle-menu col-2',
-        onClick: ApplicationMenu.show
-      });
+      return React.createElement('div', { className: 'dock-icon dock-menu js-toggle-menu col-2' });
     }
   }]);
 
