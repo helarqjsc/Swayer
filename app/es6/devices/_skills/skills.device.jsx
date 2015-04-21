@@ -80,7 +80,7 @@ class Skills extends React.Component {
     return (
       React.createElement('div', {className: "device device-skills"},
         <SkillsHeader />,
-        <SkillsPads />,
+        <SkillsPads cols="3" rows="4" />,
         <DeviceMenu />
       )
     );
@@ -120,11 +120,19 @@ class SkillsHeader extends React.Component {
 
 class SkillsPads extends React.Component {
   render() {
+    var cols = this.props.cols,
+        rows = this.props.rows,
+        obj = padPatterns[`cols${cols}rows${rows}`]['pattern'];
+
     return (
       <div className="skills-pads">
-        <SkillsPad />
+        {obj.map(function(i) {
+          return <SkillsPad 
+            cols={cols}
+            rows={rows}
+            kind={i} />
+        })}
       </div>
-      // React.createElement('div', {className: "skills-pads"}, {pads});
     )
   }
 };
@@ -132,14 +140,11 @@ class SkillsPads extends React.Component {
 
 class SkillsPad extends React.Component {
 
-  setAudioFile() {
-    return "Skills/all/3.mp3";
-  }
-  setAudioDuration() {
-    return "long";
-  }
-  setAudioContinue() {
-    return "oneshot";
+  setAudioFile(kind) {
+    var totalFiles = skillsSamples[kind],
+        file = Helpers.getRandom(1, totalFiles);
+
+    return `Skills/${kind}/${file}.mp3`;
   }
 
   play(e) {
@@ -147,17 +152,17 @@ class SkillsPad extends React.Component {
   }
 
   render() {
-    var kind = 'ki',
-      cols = 4,
-      rows = 4;
+    var cols = this.props.cols,
+        rows = this.props.rows,
+        kind = this.props.kind;
 
     return (
       <div 
-        className="pad audio col-4 pad-row-4"
-        onClick={this.play}
-        data-audio-file={this.setAudioFile()}
-        data-audio-duration={this.setAudioDuration}
-        data-audio-continue={this.setAudioContinue}>
+        className={`pad audio col-${cols} pad-row-${rows}`}
+        data-audio-file={this.setAudioFile(kind)}
+        data-audio-length="long"
+        data-audio-hit="oneshot"
+        onClick={this.play}>
 
         <p className="show">
           {this.kind}

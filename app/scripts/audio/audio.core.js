@@ -128,13 +128,13 @@ var Audio = {
       index = $('.js-pad').index($(event.target));
 
       // Check loop or not sample
-      loop = $(event.target).attr('data-audio-continue') === 'loop' ? true : false;
+      loop = $(event.target).attr('data-audio-hit') === 'loop' ? true : false;
       // Play
       Audio.play(index, loop);
     })
     // Event to stop
     .on('touchend mouseup', function () {
-      duration = $(event.target).attr('data-audio-duration');
+      duration = $(event.target).attr('data-audio-length');
 
       index = $('.js-pad').index($(event.target));
 

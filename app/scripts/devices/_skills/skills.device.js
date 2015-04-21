@@ -48,7 +48,7 @@ var Skills = (function (_React$Component) {
   _createClass(Skills, [{
     key: 'render',
     value: function render() {
-      return React.createElement('div', { className: 'device device-skills' }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, null), React.createElement(DeviceMenu, null));
+      return React.createElement('div', { className: 'device device-skills' }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: '3', rows: '4' }), React.createElement(DeviceMenu, null));
     }
   }]);
 
@@ -122,10 +122,19 @@ var SkillsPads = (function (_React$Component3) {
   _createClass(SkillsPads, [{
     key: 'render',
     value: function render() {
+      var cols = this.props.cols,
+          rows = this.props.rows,
+          obj = padPatterns['cols' + cols + 'rows' + rows].pattern;
+
       return React.createElement(
         'div',
         { className: 'skills-pads' },
-        React.createElement(SkillsPad, null)
+        obj.map(function (i) {
+          return React.createElement(SkillsPad, {
+            cols: cols,
+            rows: rows,
+            kind: i });
+        })
       );
     }
   }]);
@@ -148,18 +157,11 @@ var SkillsPad = (function (_React$Component4) {
 
   _createClass(SkillsPad, [{
     key: 'setAudioFile',
-    value: function setAudioFile() {
-      return 'Skills/all/3.mp3';
-    }
-  }, {
-    key: 'setAudioDuration',
-    value: function setAudioDuration() {
-      return 'long';
-    }
-  }, {
-    key: 'setAudioContinue',
-    value: function setAudioContinue() {
-      return 'oneshot';
+    value: function setAudioFile(kind) {
+      var totalFiles = skillsSamples[kind],
+          file = Helpers.getRandom(1, totalFiles);
+
+      return 'Skills/' + kind + '/' + file + '.mp3';
     }
   }, {
     key: 'play',
@@ -169,18 +171,18 @@ var SkillsPad = (function (_React$Component4) {
   }, {
     key: 'render',
     value: function render() {
-      var kind = 'ki',
-          cols = 4,
-          rows = 4;
+      var cols = this.props.cols,
+          rows = this.props.rows,
+          kind = this.props.kind;
 
       return React.createElement(
         'div',
         {
-          className: 'pad audio col-4 pad-row-4',
-          onClick: this.play,
-          'data-audio-file': this.setAudioFile(),
-          'data-audio-duration': this.setAudioDuration,
-          'data-audio-continue': this.setAudioContinue },
+          className: 'pad audio col-' + cols + ' pad-row-' + rows,
+          'data-audio-file': this.setAudioFile(kind),
+          'data-audio-length': 'long',
+          'data-audio-hit': 'oneshot',
+          onClick: this.play },
         React.createElement(
           'p',
           { className: 'show' },
@@ -195,5 +197,3 @@ var SkillsPad = (function (_React$Component4) {
 })(React.Component);
 
 ;
-
-// React.createElement('div', {className: "skills-pads"}, {pads});
