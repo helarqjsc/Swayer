@@ -5,12 +5,15 @@
 var body = document.querySelector('body');
 
 class ApplicationMenu extends React.Component {
+
   static show() {
     body.setAttribute('class', 'show-application-menu');
   }
+
   static hide() {
     body.removeAttribute('class', 'show-application-menu');
   }
+  
   render() {
     return (
       React.createElement('div', {className: "application-menu"},

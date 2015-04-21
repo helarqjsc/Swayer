@@ -18,7 +18,7 @@ class DeviceMenu extends React.Component {
   render() {
     return (
       <section class="device-menu">  
-        <button show-device-menu="device-menu">
+        <button>
           Close
         </button>
 

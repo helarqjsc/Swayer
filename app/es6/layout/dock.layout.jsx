@@ -87,8 +87,8 @@ class DockApplicationMenu extends React.Component {
     return (
       <div 
         className="dock-icon dock-menu js-toggle-menu col-2"
-        onClick={ApplicationMenu.show}
-      ></div>
+        onClick={ApplicationMenu.show}>
+      </div>
     )
   }
 };

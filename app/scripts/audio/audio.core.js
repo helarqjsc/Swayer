@@ -16,7 +16,7 @@ var Audio = {
    *
    * @param {Integer} Number of array
    */
-  createContext(i) {
+  createContext: function createContext(i) {
     this.contexts.push(new webkitAudioContext());
   },
 
@@ -26,7 +26,7 @@ var Audio = {
    * @param {Integer} Number of array
    * @param {String} File name
    */
-  setFile(num, file) {
+  setFile: function setFile(num, file) {
     var req = [];
 
     req[num] = new XMLHttpRequest();
@@ -34,7 +34,7 @@ var Audio = {
     req[num].open('GET', 'samples/' + file, true);
     req[num].responseType = 'arraybuffer';
 
-    req[num].addEventListener('load', function(e) {
+    req[num].addEventListener('load', function (e) {
       Audio.setBuffer(e, num);
     }, false);
 
@@ -47,7 +47,7 @@ var Audio = {
    * @param {Object} Request
    * @param {Integer} Number of context
    */
-  setBuffer(e, i) {
+  setBuffer: function setBuffer(e, i) {
     var req = e.target;
 
     this.buffers[req.soundName] = this.contexts[i].createBuffer(req.response, false);
@@ -60,7 +60,7 @@ var Audio = {
    *
    * @param {Integer} Number of array
    */
-  setOptions(n) {
+  setOptions: function setOptions(n) {
     var vol = this.contexts[n].createGainNode();
 
     this.sources[n] = this.contexts[n].createBufferSource();
@@ -76,7 +76,7 @@ var Audio = {
    *
    * @param {Integer} Number of array
    */
-  play(n, loop) {
+  play: function play(n, loop) {
     this.setOptions(n);
     this.sources[n].loop = loop;
     this.sources[n].noteOn(0);
@@ -87,19 +87,19 @@ var Audio = {
    *
    * @param {Integer} Number of array
    */
-  stop(n) {
+  stop: function stop(n) {
     this.sources[n].noteOff(0);
   },
 
   /**
    * Refresh (rebind) audio
    */
-  refresh() {
+  refresh: function refresh() {
     // Clear
     Audio.contexts.length = 0;
 
     // For each audio element
-    $('.audio').each(function(i) {
+    $('.audio').each(function (i) {
       var file = $(this).attr('data-audio-file');
 
       // Create context...
@@ -116,40 +116,42 @@ var Audio = {
    *
    * Touch start and end
    */
-  bind() {
+  bind: function bind() {
     var loop, index, duration;
 
     $('.js-pad')
-      // Event to play
-      .on('touchstart click', () => {
+    // Event to play
+    .on('touchstart click', function () {
 
-        console.log('asd')
+      console.log('asd');
 
-        index = $('.js-pad').index($(event.target));
+      index = $('.js-pad').index($(event.target));
 
-        // Check loop or not sample
-        loop = ($(event.target).attr('data-audio-continue') === 'loop') ? true : false;
-        // Play
-        Audio.play(index, loop);
-      })
-      // Event to stop
-      .on('touchend mouseup', () => {
-        duration = $(event.target).attr('data-audio-duration');
+      // Check loop or not sample
+      loop = $(event.target).attr('data-audio-continue') === 'loop' ? true : false;
+      // Play
+      Audio.play(index, loop);
+    })
+    // Event to stop
+    .on('touchend mouseup', function () {
+      duration = $(event.target).attr('data-audio-duration');
 
-        index = $('.js-pad').index($(event.target));
+      index = $('.js-pad').index($(event.target));
 
-        if (duration === 'short') {
-          Audio.stop(index);
-        }
-      });
+      if (duration === 'short') {
+        Audio.stop(index);
+      }
+    });
   },
 
   /**
    * Init
    */
-  init() {
-    $(window).load(() => {
-      this.refresh();
+  init: function init() {
+    var _this = this;
+
+    $(window).load(function () {
+      _this.refresh();
     });
   }
 };

@@ -50,7 +50,7 @@ var DeviceMenu = (function (_React$Component2) {
         { 'class': 'device-menu' },
         React.createElement(
           'button',
-          { 'show-device-menu': 'device-menu' },
+          null,
           'Close'
         ),
         React.createElement(
