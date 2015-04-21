@@ -8,10 +8,18 @@ var browserSync = require('browser-sync');
 var babel = require('gulp-babel');
 var svgSprite = require("gulp-svg-sprites");
 
+function swallowError(error) {
+
+  //If you want details of the error in the console
+  console.log(error.toString());
+
+  this.emit('end');
+}
+
 gulp.task('es6', function() {
   return gulp.src('app/es6/**/*.{jsx,js}')
     .pipe(babel())
-    .on('error', console.error.bind(console))
+    .on('error', swallowError)
     .pipe(gulp.dest('app/scripts/'))
     // .pipe(reload({
     //   stream: true
@@ -146,17 +154,17 @@ gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-
 
   // watch for changes
   gulp.watch([
-      'app/*.html',
-      'app/es6/**/*.{jsx,js}',
-      'app/scripts/**/*.js',
-      'app/images/**/*',
-      '.tmp/fonts/**/*'
-    ]);
-    // .on('error', console.error.bind(console))
-    // .on('change', reload);
+    'app/*.html',
+    'app/es6/**/*.{jsx,js}',
+    'app/scripts/**/*.js',
+    'app/images/**/*',
+    '.tmp/fonts/**/*'
+  ]);
+  // .on('error', console.error.bind(console))
+  // .on('change', reload);
 
-  gulp.watch('app/es6/**/*.{jsx,js}', ['es6']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/es6/**/*.{jsx,js}', ['es6']).on('error', swallowError);
+  gulp.watch('app/styles/**/*.scss', ['styles']).on('error', swallowError);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
