@@ -9,13 +9,13 @@ My new sound application for iOS.
 ### Server
 
 ```
-$ gulp server
+$ gulp serve
 ```
 
 ### Build
 
 ```
-$ gulp
+$ gulp build
 ```
 
 ---
@@ -24,3 +24,4 @@ $ gulp
 ![](http://andreykeske.com/assets/images/git/bower.png)
 ![](http://andreykeske.com/assets/images/git/gulp.png)
 ![](http://andreykeske.com/assets/images/git/sass.png)
+![](http://andreykeske.com/assets/images/git/react.png)
