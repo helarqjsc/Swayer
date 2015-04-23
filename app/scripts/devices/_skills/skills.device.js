@@ -14,6 +14,10 @@ var skillsSamples = {
   hat: 331,
   snare: 468 };
 
+var grid = {
+  cols: 2,
+  rows: 2 };
+
 var padPatterns = {
   cols2rows2: {
     pattern: ['all', 'all', 'kick', 'snare'] },
@@ -48,7 +52,7 @@ var Skills = (function (_React$Component) {
   _createClass(Skills, [{
     key: 'render',
     value: function render() {
-      return React.createElement('div', { className: 'device device-skills' }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: '3', rows: '4' }), React.createElement(DeviceMenu, null));
+      return React.createElement('div', { className: 'device device-skills' }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: grid.cols, rows: grid.rows }), React.createElement(DeviceMenu, null));
     }
   }]);
 
@@ -90,7 +94,9 @@ var SkillsHeader = (function (_React$Component2) {
             React.createElement(
               'div',
               { className: 'col-4 text-center' },
-              React.createElement('div', { className: 'icon random-all' })
+              React.createElement('div', {
+                className: 'icon random-all',
+                onClick: SkillsPads.shuffle })
             ),
             React.createElement(
               'div',
@@ -137,6 +143,28 @@ var SkillsPads = (function (_React$Component3) {
         })
       );
     }
+  }], [{
+    key: 'shuffle',
+    value: function shuffle(e) {
+      var $device = $(e.target).closest('.device'),
+          $pads = $device.find('.skills-pads'),
+          $pad = $pads.find('.pad'),
+          file,
+          kind = '';
+
+      {
+        $pad.map(function (i) {
+          var _this = this;
+
+          kind = $(_this).attr('data-audio-kind');
+          file = SkillsPad.setAudioFile(kind);
+
+          $(_this).attr('data-audio-file', file);
+
+          Audio.refresh();
+        });
+      }
+    }
   }]);
 
   return SkillsPads;
@@ -156,14 +184,6 @@ var SkillsPad = (function (_React$Component4) {
   _inherits(SkillsPad, _React$Component4);
 
   _createClass(SkillsPad, [{
-    key: 'setAudioFile',
-    value: function setAudioFile(kind) {
-      var totalFiles = skillsSamples[kind],
-          file = Helpers.getRandom(1, totalFiles);
-
-      return 'Skills/' + kind + '/' + file + '.mp3';
-    }
-  }, {
     key: 'play',
     value: function play(e) {
       Audio.play($(event.target).index(), false);
@@ -171,7 +191,7 @@ var SkillsPad = (function (_React$Component4) {
   }, {
     key: 'render',
     value: function render() {
-      var cols = this.props.cols,
+      var cols = 12 / this.props.cols,
           rows = this.props.rows,
           kind = this.props.kind;
 
@@ -179,10 +199,11 @@ var SkillsPad = (function (_React$Component4) {
         'div',
         {
           className: 'pad audio col-' + cols + ' pad-row-' + rows,
-          'data-audio-file': this.setAudioFile(kind),
+          'data-audio-file': SkillsPad.setAudioFile(kind),
+          'data-audio-kind': kind,
           'data-audio-length': 'long',
           'data-audio-hit': 'oneshot',
-          onClick: this.play },
+          onClick: this.play.bind(this) },
         React.createElement(
           'p',
           { className: 'show' },
@@ -190,6 +211,14 @@ var SkillsPad = (function (_React$Component4) {
         ),
         React.createElement('img', { src: '/svg/skills/random-one.svg', className: 'refresh' })
       );
+    }
+  }], [{
+    key: 'setAudioFile',
+    value: function setAudioFile(kind) {
+      var totalFiles = skillsSamples[kind],
+          file = Helpers.getRandom(1, totalFiles);
+
+      return 'Skills/' + kind + '/' + file + '.mp3';
     }
   }]);
 

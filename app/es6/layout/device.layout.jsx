@@ -17,7 +17,7 @@ class Device extends React.Component {
 class DeviceMenu extends React.Component {
   render() {
     return (
-      <section class="device-menu">  
+      <section class="device-menu">
         <button>
           Close
         </button>
@@ -29,4 +29,3 @@ class DeviceMenu extends React.Component {
     );
   }
 };
-

@@ -9,6 +9,11 @@ var skillsSamples = {
   'snare': 468,
 };
 
+var grid = {
+  'cols': 2,
+  'rows': 2,
+};
+
 var padPatterns = {
   'cols2rows2': {
     'pattern': [
@@ -80,7 +85,7 @@ class Skills extends React.Component {
     return (
       React.createElement('div', {className: "device device-skills"},
         <SkillsHeader />,
-        <SkillsPads cols="3" rows="4" />,
+        <SkillsPads cols={grid.cols} rows={grid.rows} />,
         <DeviceMenu />
       )
     );
@@ -89,6 +94,7 @@ class Skills extends React.Component {
 
 
 class SkillsHeader extends React.Component {
+
   render() {
     return (
       <section className="skills-header">
@@ -96,14 +102,15 @@ class SkillsHeader extends React.Component {
           <div className="rows">
 
             <div className="col-4 text-left">
-              <div 
+              <div
                 className="icon skills-menu"
-                onClick={DeviceMenu.show}>
-              </div>
+                onClick={DeviceMenu.show} />
             </div>
 
             <div className="col-4 text-center">
-              <div className="icon random-all"></div>
+              <div
+                className="icon random-all"
+                onClick={SkillsPads.shuffle} />
             </div>
 
             <div className="col-4 text-right">
@@ -117,8 +124,27 @@ class SkillsHeader extends React.Component {
   }
 };
 
-
 class SkillsPads extends React.Component {
+
+  static shuffle(e) {
+    var $device = $(e.target).closest('.device'),
+        $pads = $device.find('.skills-pads'),
+        $pad = $pads.find('.pad'),
+
+        file, kind = '';
+
+    {$pad.map(function(i) {
+      var _this = this;
+
+      kind = $(_this).attr('data-audio-kind');
+      file = SkillsPad.setAudioFile(kind);
+
+      $(_this).attr('data-audio-file', file);
+
+      Audio.refresh();
+    })}
+  }
+
   render() {
     var cols = this.props.cols,
         rows = this.props.rows,
@@ -127,7 +153,7 @@ class SkillsPads extends React.Component {
     return (
       <div className="skills-pads">
         {obj.map(function(i) {
-          return <SkillsPad 
+          return <SkillsPad
             cols={cols}
             rows={rows}
             kind={i} />
@@ -140,7 +166,7 @@ class SkillsPads extends React.Component {
 
 class SkillsPad extends React.Component {
 
-  setAudioFile(kind) {
+  static setAudioFile(kind) {
     var totalFiles = skillsSamples[kind],
         file = Helpers.getRandom(1, totalFiles);
 
@@ -152,17 +178,18 @@ class SkillsPad extends React.Component {
   }
 
   render() {
-    var cols = this.props.cols,
+    var cols = 12 / this.props.cols,
         rows = this.props.rows,
         kind = this.props.kind;
 
     return (
-      <div 
+      <div
         className={`pad audio col-${cols} pad-row-${rows}`}
-        data-audio-file={this.setAudioFile(kind)}
+        data-audio-file={SkillsPad.setAudioFile(kind)}
+        data-audio-kind={kind}
         data-audio-length="long"
         data-audio-hit="oneshot"
-        onClick={this.play}>
+        onClick={this.play.bind(this)}>
 
         <p className="show">
           {this.kind}

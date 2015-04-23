@@ -17,6 +17,7 @@ var Audio = {
    * @param {Integer} Number of array
    */
   createContext: function createContext(i) {
+    console.log(i);
     this.contexts.push(new webkitAudioContext());
   },
 
