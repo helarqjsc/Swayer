@@ -9,6 +9,7 @@ var skillsSamples = {
   'snare': 468,
 };
 
+
 var padPatterns = {
   'cols2rows2': {
     'pattern': [
@@ -46,7 +47,7 @@ var padPatterns = {
   'cols3rows3': {
     'pattern': [
       'all', 'all', 'all',
-      'kick', 'snare', 'hat',
+      'kick', 'hat', 'snare',
       'all', 'all', 'all',
     ],
   },
@@ -54,14 +55,14 @@ var padPatterns = {
     'pattern': [
       'all', 'all', 'all',
       'all', 'all', 'all',
-      'kick', 'snare', 'hat',
+      'kick', 'hat', 'snare',
       'all', 'all', 'all',
     ],
   },
   'cols4rows3': {
     'pattern': [
       'all', 'all', 'all', 'all',
-      'kick', 'snare', 'hat', 'all',
+      'kick', 'hat', 'snare', 'all',
       'all', 'all', 'all', 'all',
     ],
   },
@@ -69,11 +70,12 @@ var padPatterns = {
     'pattern': [
       'all', 'all', 'all', 'all',
       'all', 'all', 'all', 'all',
-      'kick', 'snare', 'hat', 'all',
+      'kick', 'hat', 'snare', 'all',
       'all', 'all', 'all', 'all',
     ],
   },
 };
+
 
 class Skills extends React.Component {
 
@@ -132,6 +134,7 @@ class SkillsHeader extends React.Component {
     );
   }
 };
+
 
 class SkillsPads extends React.Component {
 

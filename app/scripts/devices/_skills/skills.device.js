@@ -26,13 +26,13 @@ var padPatterns = {
   cols2rows4: {
     pattern: ['all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all'] },
   cols3rows3: {
-    pattern: ['all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all'] },
+    pattern: ['all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all'] },
   cols3rows4: {
-    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all'] },
+    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all'] },
   cols4rows3: {
-    pattern: ['all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all', 'all', 'all'] },
+    pattern: ['all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all', 'all', 'all'] },
   cols4rows4: {
-    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all', 'all', 'all'] } };
+    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all', 'all', 'all'] } };
 
 var Skills = (function (_React$Component) {
   function Skills() {
