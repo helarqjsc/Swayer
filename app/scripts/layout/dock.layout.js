@@ -25,10 +25,10 @@ var Dock = (function (_React$Component) {
       return React.createElement('div', { className: 'dock container' }, React.createElement(
         'div',
         { className: 'row' },
-        React.createElement(DockLock, null),
-        React.createElement(DockAddDevice, null),
+        React.createElement(DockLockIcon, null),
+        React.createElement(DockAddDeviceIcon, null),
         React.createElement(DockDevicesCarousel, null),
-        React.createElement(DockApplicationMenu, null)
+        React.createElement(DockApplicationMenuIcon, null)
       ));
     }
   }]);
@@ -38,51 +38,63 @@ var Dock = (function (_React$Component) {
 
 ;
 
-var DockLock = (function (_React$Component2) {
-  function DockLock() {
-    _classCallCheck(this, DockLock);
+/**
+ * Lock/unlock Dock icon
+ */
+
+var DockLockIcon = (function (_React$Component2) {
+  function DockLockIcon() {
+    _classCallCheck(this, DockLockIcon);
 
     if (_React$Component2 != null) {
       _React$Component2.apply(this, arguments);
     }
   }
 
-  _inherits(DockLock, _React$Component2);
+  _inherits(DockLockIcon, _React$Component2);
 
-  _createClass(DockLock, [{
+  _createClass(DockLockIcon, [{
     key: 'render',
     value: function render() {
       return React.createElement('div', { className: 'dock-icon dock-lock col-2' });
     }
   }]);
 
-  return DockLock;
+  return DockLockIcon;
 })(React.Component);
 
 ;
 
-var DockAddDevice = (function (_React$Component3) {
-  function DockAddDevice() {
-    _classCallCheck(this, DockAddDevice);
+/**
+ * Add device icon
+ */
+
+var DockAddDeviceIcon = (function (_React$Component3) {
+  function DockAddDeviceIcon() {
+    _classCallCheck(this, DockAddDeviceIcon);
 
     if (_React$Component3 != null) {
       _React$Component3.apply(this, arguments);
     }
   }
 
-  _inherits(DockAddDevice, _React$Component3);
+  _inherits(DockAddDeviceIcon, _React$Component3);
 
-  _createClass(DockAddDevice, [{
+  _createClass(DockAddDeviceIcon, [{
     key: 'render',
     value: function render() {
       return React.createElement('div', { className: 'dock-icon dock-add-device col-2' });
     }
   }]);
 
-  return DockAddDevice;
+  return DockAddDeviceIcon;
 })(React.Component);
 
 ;
+
+/**
+ * Workspace carousel
+ */
 
 var DockDevicesCarousel = (function (_React$Component4) {
   function DockDevicesCarousel() {
@@ -102,7 +114,7 @@ var DockDevicesCarousel = (function (_React$Component4) {
         'div',
         null,
         React.createElement(DockDeviceIcon, { device: 'skills', active: 'true' }),
-        React.createElement(DockDeviceIcon, { device: 'swayer', active: 'false' })
+        React.createElement(DockDeviceIcon, { device: 'skills', active: 'false' })
       ));
     }
   }]);
@@ -111,6 +123,10 @@ var DockDevicesCarousel = (function (_React$Component4) {
 })(React.Component);
 
 ;
+
+/**
+ * Dock device icon
+ */
 
 var DockDeviceIcon = (function (_React$Component5) {
   function DockDeviceIcon() {
@@ -124,13 +140,6 @@ var DockDeviceIcon = (function (_React$Component5) {
   _inherits(DockDeviceIcon, _React$Component5);
 
   _createClass(DockDeviceIcon, [{
-    key: 'selectDevice',
-    value: function selectDevice(e) {
-      console.log(e.target);
-      console.log(event.target.dataset.device);
-      console.log(event.target.index);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var device = this.props.device,
@@ -140,7 +149,7 @@ var DockDeviceIcon = (function (_React$Component5) {
         'div',
         {
           className: elClass,
-          onClick: this.selectDevice,
+          onClick: Workspace.toDevice,
           'data-device': this.props.device },
         this.props.active === 'true' ? React.createElement(DockIconIndicate, null) : null
       );
@@ -175,18 +184,18 @@ var DockIconIndicate = (function (_React$Component6) {
 
 ;
 
-var DockApplicationMenu = (function (_React$Component7) {
-  function DockApplicationMenu() {
-    _classCallCheck(this, DockApplicationMenu);
+var DockApplicationMenuIcon = (function (_React$Component7) {
+  function DockApplicationMenuIcon() {
+    _classCallCheck(this, DockApplicationMenuIcon);
 
     if (_React$Component7 != null) {
       _React$Component7.apply(this, arguments);
     }
   }
 
-  _inherits(DockApplicationMenu, _React$Component7);
+  _inherits(DockApplicationMenuIcon, _React$Component7);
 
-  _createClass(DockApplicationMenu, [{
+  _createClass(DockApplicationMenuIcon, [{
     key: 'render',
     value: function render() {
       return React.createElement('div', {
@@ -195,7 +204,7 @@ var DockApplicationMenu = (function (_React$Component7) {
     }
   }]);
 
-  return DockApplicationMenu;
+  return DockApplicationMenuIcon;
 })(React.Component);
 
 ;

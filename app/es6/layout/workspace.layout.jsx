@@ -2,11 +2,29 @@
 
 'use strict';
 
-class Device extends React.Component {
+class Workspace extends React.Component {
+
+  static toDevice() {
+    var index = $(event.target).index();
+
+    Workspace.move(index);
+  }
+  
+  static move(index) {
+    var $wrap = $('.workspace .wrap'),
+        width = $(window).width(),
+        speed = 777;
+
+    $wrap.animate({
+      left: width * (index * -1)
+    }, speed);
+  }
+
   render() {
     return (
       React.createElement('div', {className: "workspace"},
         <div className="wrap">
+          <Skills />,
           <Skills />
         </div>
       )
@@ -15,34 +33,7 @@ class Device extends React.Component {
 };
 
 
-class DeviceMenu extends React.Component {
-
-  static show(e) {
-    var $device = $(e.target).closest('.device'),
-      $menu = $device.find('.device-menu');
-
-    $menu.addClass('show');
-  }
-
-  hide(e) {
-    var $menu = $(e.target).closest('.device-menu');
-
-    $menu.removeClass('show');
-  }
-
-  render() {
-    return (
-      React.createElement('div', {className: "device-menu"},
-        <p onClick={this.hide}>
-          Close
-        </p>
-      )
-    );
-  }
-};
-
-
 React.render(
-  React.createElement(Device, null),
+  React.createElement(Workspace, null),
   document.getElementById('workspace')
 );

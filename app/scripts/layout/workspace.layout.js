@@ -8,73 +8,51 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 
-var Device = (function (_React$Component) {
-  function Device() {
-    _classCallCheck(this, Device);
+var Workspace = (function (_React$Component) {
+  function Workspace() {
+    _classCallCheck(this, Workspace);
 
     if (_React$Component != null) {
       _React$Component.apply(this, arguments);
     }
   }
 
-  _inherits(Device, _React$Component);
+  _inherits(Workspace, _React$Component);
 
-  _createClass(Device, [{
+  _createClass(Workspace, [{
     key: 'render',
     value: function render() {
       return React.createElement('div', { className: 'workspace' }, React.createElement(
         'div',
         { className: 'wrap' },
+        React.createElement(Skills, null),
+        ',',
         React.createElement(Skills, null)
       ));
     }
-  }]);
+  }], [{
+    key: 'toDevice',
+    value: function toDevice() {
+      var index = $(event.target).index();
 
-  return Device;
-})(React.Component);
-
-;
-
-var DeviceMenu = (function (_React$Component2) {
-  function DeviceMenu() {
-    _classCallCheck(this, DeviceMenu);
-
-    if (_React$Component2 != null) {
-      _React$Component2.apply(this, arguments);
-    }
-  }
-
-  _inherits(DeviceMenu, _React$Component2);
-
-  _createClass(DeviceMenu, [{
-    key: 'hide',
-    value: function hide(e) {
-      var $menu = $(e.target).closest('.device-menu');
-
-      $menu.removeClass('show');
+      Workspace.move(index);
     }
   }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement('div', { className: 'device-menu' }, React.createElement(
-        'p',
-        { onClick: this.hide },
-        'Close'
-      ));
-    }
-  }], [{
-    key: 'show',
-    value: function show(e) {
-      var $device = $(e.target).closest('.device'),
-          $menu = $device.find('.device-menu');
+    key: 'move',
+    value: function move(index) {
+      var $wrap = $('.workspace .wrap'),
+          width = $(window).width(),
+          speed = 777;
 
-      $menu.addClass('show');
+      $wrap.animate({
+        left: width * (index * -1)
+      }, speed);
     }
   }]);
 
-  return DeviceMenu;
+  return Workspace;
 })(React.Component);
 
 ;
 
-React.render(React.createElement(Device, null), document.getElementById('workspace'));
+React.render(React.createElement(Workspace, null), document.getElementById('workspace'));

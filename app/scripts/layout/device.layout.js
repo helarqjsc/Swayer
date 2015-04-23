@@ -8,6 +8,10 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 
+/**
+ * Device
+ */
+
 var Device = (function (_React$Component) {
   function Device() {
     _classCallCheck(this, Device);
@@ -31,6 +35,10 @@ var Device = (function (_React$Component) {
 
 ;
 
+/**
+ * Show and hide device menu
+ */
+
 var DeviceMenu = (function (_React$Component2) {
   function DeviceMenu() {
     _classCallCheck(this, DeviceMenu);
@@ -43,22 +51,28 @@ var DeviceMenu = (function (_React$Component2) {
   _inherits(DeviceMenu, _React$Component2);
 
   _createClass(DeviceMenu, [{
+    key: 'hide',
+    value: function hide(e) {
+      var $menu = $(e.target).closest('.device-menu');
+
+      $menu.removeClass('show');
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'section',
-        { 'class': 'device-menu' },
-        React.createElement(
-          'button',
-          null,
-          'Close'
-        ),
-        React.createElement(
-          'button',
-          { 'class': 'js-delete-device' },
-          'delete device'
-        )
-      );
+      return React.createElement('div', { className: 'device-menu' }, React.createElement(
+        'p',
+        { onClick: this.hide },
+        'Close'
+      ));
+    }
+  }], [{
+    key: 'show',
+    value: function show(e) {
+      var $device = $(e.target).closest('.device'),
+          $menu = $device.find('.device-menu');
+
+      $menu.addClass('show');
     }
   }]);
 

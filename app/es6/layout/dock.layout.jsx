@@ -7,18 +7,20 @@ class Dock extends React.Component {
     return (
       React.createElement('div', {className: "dock container"},
         <div className="row">
-          <DockLock />
-          <DockAddDevice />
+          <DockLockIcon />
+          <DockAddDeviceIcon />
           <DockDevicesCarousel />
-          <DockApplicationMenu />
+          <DockApplicationMenuIcon />
         </div>
       )
     );
   }
 };
 
-
-class DockLock extends React.Component {
+/**
+ * Lock/unlock Dock icon
+ */
+class DockLockIcon extends React.Component {
   render() {
     return (
       React.createElement('div', {className: "dock-icon dock-lock col-2"})
@@ -27,7 +29,10 @@ class DockLock extends React.Component {
 };
 
 
-class DockAddDevice extends React.Component {
+/**
+ * Add device icon
+ */
+class DockAddDeviceIcon extends React.Component {
   render() {
     return (
       React.createElement('div', {className: "dock-icon dock-add-device col-2"})
@@ -36,26 +41,26 @@ class DockAddDevice extends React.Component {
 };
 
 
+/**
+ * Workspace carousel
+ */
 class DockDevicesCarousel extends React.Component {
+
   render() {
     return (
       React.createElement('section', {className: "js-device-carousel"}),
       <div>
         <DockDeviceIcon device="skills" active="true" />
-        <DockDeviceIcon device="swayer" active="false" />
+        <DockDeviceIcon device="skills" active="false" />
       </div>
     )
   }
 };
 
-
+/**
+ * Dock device icon
+ */
 class DockDeviceIcon extends React.Component {
-  selectDevice(e) {
-    console.log(e.target)
-    console.log(event.target.dataset.device)
-    console.log(event.target.index)
-  }
-
   render() {
     var
       device = this.props.device,
@@ -64,7 +69,7 @@ class DockDeviceIcon extends React.Component {
     return (
       <div 
         className={elClass} 
-        onClick={this.selectDevice}
+        onClick={Workspace.toDevice}
         data-device={this.props.device}>
         {this.props.active === 'true' ? <DockIconIndicate /> : null}
       </div>
@@ -82,7 +87,7 @@ class DockIconIndicate extends React.Component {
 };
 
 
-class DockApplicationMenu extends React.Component {
+class DockApplicationMenuIcon extends React.Component {
   render() {
     return (
       <div 
