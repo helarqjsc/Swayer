@@ -9,11 +9,6 @@ var skillsSamples = {
   'snare': 468,
 };
 
-var grid = {
-  'cols': 2,
-  'rows': 2,
-};
-
 var padPatterns = {
   'cols2rows2': {
     'pattern': [
@@ -81,11 +76,25 @@ var padPatterns = {
 };
 
 class Skills extends React.Component {
+
+  static getColor() {
+    return Helpers.getRGBColor();
+  }
+
+  static setBGColor() {
+    var $device = $(event.target).closest('.device');
+
+    return $device.css('background', Skills.getColor());
+  }
+
   render() {
     return (
-      React.createElement('div', {className: "device device-skills"},
+      React.createElement('div', {
+          className: "device device-skills",
+          style: {background: Skills.getColor()}
+          },
         <SkillsHeader />,
-        <SkillsPads cols={grid.cols} rows={grid.rows} />,
+        <SkillsPads cols="3" rows="4" />,
         <DeviceMenu />
       )
     );
@@ -126,8 +135,8 @@ class SkillsHeader extends React.Component {
 
 class SkillsPads extends React.Component {
 
-  static shuffle(e) {
-    var $device = $(e.target).closest('.device'),
+  static shuffle() {
+    var $device = $(event.target).closest('.device'),
         $pads = $device.find('.skills-pads'),
         $pad = $pads.find('.pad'),
 
@@ -143,6 +152,8 @@ class SkillsPads extends React.Component {
 
       Audio.refresh();
     })}
+
+    Skills.setBGColor();
   }
 
   render() {

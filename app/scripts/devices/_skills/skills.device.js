@@ -14,10 +14,6 @@ var skillsSamples = {
   hat: 331,
   snare: 468 };
 
-var grid = {
-  cols: 2,
-  rows: 2 };
-
 var padPatterns = {
   cols2rows2: {
     pattern: ['all', 'all', 'kick', 'snare'] },
@@ -52,7 +48,22 @@ var Skills = (function (_React$Component) {
   _createClass(Skills, [{
     key: 'render',
     value: function render() {
-      return React.createElement('div', { className: 'device device-skills' }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: grid.cols, rows: grid.rows }), React.createElement(DeviceMenu, null));
+      return React.createElement('div', {
+        className: 'device device-skills',
+        style: { background: Skills.getColor() }
+      }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: '3', rows: '4' }), React.createElement(DeviceMenu, null));
+    }
+  }], [{
+    key: 'getColor',
+    value: function getColor() {
+      return Helpers.getRGBColor();
+    }
+  }, {
+    key: 'setBGColor',
+    value: function setBGColor() {
+      var $device = $(event.target).closest('.device');
+
+      return $device.css('background', Skills.getColor());
     }
   }]);
 
@@ -145,8 +156,8 @@ var SkillsPads = (function (_React$Component3) {
     }
   }], [{
     key: 'shuffle',
-    value: function shuffle(e) {
-      var $device = $(e.target).closest('.device'),
+    value: function shuffle() {
+      var $device = $(event.target).closest('.device'),
           $pads = $device.find('.skills-pads'),
           $pad = $pads.find('.pad'),
           file,
@@ -164,6 +175,8 @@ var SkillsPads = (function (_React$Component3) {
           Audio.refresh();
         });
       }
+
+      Skills.setBGColor();
     }
   }]);
 

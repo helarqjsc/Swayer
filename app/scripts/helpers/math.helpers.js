@@ -24,6 +24,19 @@ var Helpers = (function (_React$Component) {
     value: function getRandom(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
+  }, {
+    key: 'getRGBColor',
+    value: function getRGBColor() {
+      var red, green, blue, rgb;
+
+      red = Helpers.getRandom(0, 200);
+      green = Helpers.getRandom(0, 200);
+      blue = Helpers.getRandom(0, 200);
+
+      rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+
+      return rgb;
+    }
   }]);
 
   return Helpers;
