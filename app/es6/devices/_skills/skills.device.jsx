@@ -152,10 +152,9 @@ class SkillsPads extends React.Component {
       file = SkillsPad.setAudioFile(kind);
 
       $(_this).attr('data-audio-file', file);
-
-      Audio.refresh();
     })}
 
+    Audio.refresh();
     Skills.setBGColor();
   }
 
@@ -188,7 +187,7 @@ class SkillsPad extends React.Component {
   }
 
   play(e) {
-    Audio.play($(event.target).index(), false);
+    Audio.play($('.pad').index(event.target), false);
   }
 
   render() {

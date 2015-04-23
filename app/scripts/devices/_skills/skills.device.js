@@ -171,11 +171,10 @@ var SkillsPads = (function (_React$Component3) {
           file = SkillsPad.setAudioFile(kind);
 
           $(_this).attr('data-audio-file', file);
-
-          Audio.refresh();
         });
       }
 
+      Audio.refresh();
       Skills.setBGColor();
     }
   }]);
@@ -199,7 +198,7 @@ var SkillsPad = (function (_React$Component4) {
   _createClass(SkillsPad, [{
     key: 'play',
     value: function play(e) {
-      Audio.play($(event.target).index(), false);
+      Audio.play($('.pad').index(event.target), false);
     }
   }, {
     key: 'render',
