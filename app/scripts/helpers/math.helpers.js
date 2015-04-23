@@ -37,6 +37,11 @@ var Helpers = (function (_React$Component) {
 
       return rgb;
     }
+  }, {
+    key: 'setBGColor',
+    value: function setBGColor($elem, color) {
+      $elem.css('background', color);
+    }
   }]);
 
   return Helpers;

@@ -63,7 +63,7 @@ var Skills = (function (_React$Component) {
     value: function setBGColor() {
       var $device = $(event.target).closest('.device');
 
-      return $device.css('background', Skills.getColor());
+      Helpers.setBGColor($device, Skills.getColor());
     }
   }]);
 

@@ -20,4 +20,8 @@ class Helpers extends React.Component {
     return rgb;
   }
 
+  static setBGColor($elem, color) {
+    $elem.css('background', color);
+  }
+
 };
