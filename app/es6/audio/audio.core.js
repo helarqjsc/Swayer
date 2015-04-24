@@ -2,6 +2,8 @@
 
 'use strict';
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 var Audio = {
 
   // AudioContext sources
@@ -18,6 +20,7 @@ var Audio = {
    */
   createContext(i) {
     this.contexts.push(new webkitAudioContext());
+    // this.contexts[i] = new webkitAudioContext();
   },
 
   /**
@@ -96,7 +99,7 @@ var Audio = {
    */
   refresh() {
     // Clear
-    Audio.contexts.length = 0;
+    // Audio.contexts.length = 0;
 
     // For each audio element
     $('.audio').each(function(i) {
@@ -104,11 +107,12 @@ var Audio = {
 
       // Create context...
       Audio.createContext(i);
+
       // ...and set file
       Audio.setFile(i, file);
     });
 
-    Audio.bind();
+    // Audio.bind();
   },
 
   /**
@@ -122,8 +126,6 @@ var Audio = {
     $('.js-pad')
       // Event to play
       .on('touchstart click', () => {
-
-        console.log('asd')
 
         index = $('.js-pad').index($(event.target));
 

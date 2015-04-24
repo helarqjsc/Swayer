@@ -7,7 +7,7 @@ class Dock extends React.Component {
     return (
       React.createElement('div', {className: "dock container"},
         <div className="row">
-          <DockLockIcon />
+          <DockLockIcon locked={false} />
           <DockAddDeviceIcon />
           <DockDevicesCarousel />
           <DockApplicationMenuIcon />
@@ -21,9 +21,35 @@ class Dock extends React.Component {
  * Lock/unlock Dock icon
  */
 class DockLockIcon extends React.Component {
+
+  handleClick() {
+    this.props.locked = this.props.locked ? false : true;
+    // console.log('handle: ' + this.props.locked)
+  }
+
   render() {
+    // var cx = React.addons.classSet;
+    // var classes = cx({
+    //   'dock-lock': !this.props.locked,
+    //   'dock-unlock': this.props.locked
+    // });
+
+    // console.log(classes);
+    // console.log(this.props.locked);
+
+    // return (
+    //   React.createElement('div', {
+    //     className: `dock-icon ${classes} col-2`,
+    //     onClick: this.handleClick.bind(this)
+    //   })
+    // )
+
     return (
-      React.createElement('div', {className: "dock-icon dock-lock col-2"})
+      React.createElement('div', {
+        className: this.props.locked === this.props.locked ? 'dock-icon dock-lock col-2' : 'dock-icon dock-unlock col-2',
+        // className: classes,
+        onClick: this.handleClick.bind(this)
+      })
     )
   }
 };

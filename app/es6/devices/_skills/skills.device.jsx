@@ -105,7 +105,6 @@ class Skills extends React.Component {
 
 
 class SkillsHeader extends React.Component {
-
   render() {
     return (
       <section className="skills-header">
@@ -154,7 +153,8 @@ class SkillsPads extends React.Component {
       $(_this).attr('data-audio-file', file);
     })}
 
-    Audio.refresh();
+    setTimeout(function() { Audio.refresh(); }, 1000);
+
     Skills.setBGColor();
   }
 

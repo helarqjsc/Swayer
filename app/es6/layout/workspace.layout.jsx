@@ -13,7 +13,7 @@ class Workspace extends React.Component {
   static move(index) {
     var $wrap = $('.workspace .wrap'),
         width = $(window).width(),
-        speed = 777;
+        speed = 333;
 
     $wrap.animate({
       left: width * (index * -1)

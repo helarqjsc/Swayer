@@ -42,7 +42,7 @@ var Workspace = (function (_React$Component) {
     value: function move(index) {
       var $wrap = $('.workspace .wrap'),
           width = $(window).width(),
-          speed = 777;
+          speed = 333;
 
       $wrap.animate({
         left: width * (index * -1)

@@ -25,7 +25,7 @@ var Dock = (function (_React$Component) {
       return React.createElement('div', { className: 'dock container' }, React.createElement(
         'div',
         { className: 'row' },
-        React.createElement(DockLockIcon, null),
+        React.createElement(DockLockIcon, { locked: false }),
         React.createElement(DockAddDeviceIcon, null),
         React.createElement(DockDevicesCarousel, null),
         React.createElement(DockApplicationMenuIcon, null)
@@ -54,9 +54,35 @@ var DockLockIcon = (function (_React$Component2) {
   _inherits(DockLockIcon, _React$Component2);
 
   _createClass(DockLockIcon, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      this.props.locked = this.props.locked ? false : true;
+      // console.log('handle: ' + this.props.locked)
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return React.createElement('div', { className: 'dock-icon dock-lock col-2' });
+      // var cx = React.addons.classSet;
+      // var classes = cx({
+      //   'dock-lock': !this.props.locked,
+      //   'dock-unlock': this.props.locked
+      // });
+
+      // console.log(classes);
+      // console.log(this.props.locked);
+
+      // return (
+      //   React.createElement('div', {
+      //     className: `dock-icon ${classes} col-2`,
+      //     onClick: this.handleClick.bind(this)
+      //   })
+      // )
+
+      return React.createElement('div', {
+        className: this.props.locked === this.props.locked ? 'dock-icon dock-lock col-2' : 'dock-icon dock-unlock col-2',
+        // className: classes,
+        onClick: this.handleClick.bind(this)
+      });
     }
   }]);
 
