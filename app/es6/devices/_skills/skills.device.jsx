@@ -252,6 +252,8 @@ class SkillsPad extends React.Component {
   play() {
     var $pad = $(event.target);
 
+    // console.log(React.findDOMNode(this.refs.pad))
+
     if (!$pad.hasClass('pad-wants-to-change')) {
 
       // Second param means that the sample is not loop
@@ -283,7 +285,8 @@ class SkillsPad extends React.Component {
         data-audio-kind={kind}
         data-audio-length="long"
         data-audio-hit="oneshot"
-        onClick={this.play.bind(this)}>
+        onClick={this.play.bind(this)}
+        ref="pad">
 
         <p className="show">
           {this.kind}

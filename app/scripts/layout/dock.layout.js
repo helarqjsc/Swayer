@@ -41,70 +41,51 @@ var Dock = (function (_React$Component) {
 /**
  * Lock/unlock Dock icon
  */
+var DockLockIcon = React.createClass({
+  displayName: 'DockLockIcon',
 
-var DockLockIcon = (function (_React$Component2) {
-  function DockLockIcon() {
-    _classCallCheck(this, DockLockIcon);
+  getInitialState: function getInitialState() {
+    return {
+      locked: false
+    };
+  },
+
+  handleClick: function handleClick() {
+    var lock = !this.state.locked ? true : false;
+
+    this.setState({
+      locked: lock
+    });
+  },
+
+  render: function render() {
+    var classString = 'dock-icon dock-lock col-2 ';
+
+    if (this.state.locked) {
+      classString += 'lock';
+    }
+
+    return React.createElement('div', {
+      className: classString,
+      onClick: this.handleClick,
+      locked: this.state.locked });
+  }
+});
+
+/**
+ * Add device icon
+ */
+
+var DockAddDeviceIcon = (function (_React$Component2) {
+  function DockAddDeviceIcon() {
+    _classCallCheck(this, DockAddDeviceIcon);
 
     if (_React$Component2 != null) {
       _React$Component2.apply(this, arguments);
     }
   }
 
-  _inherits(DockLockIcon, _React$Component2);
-
-  _createClass(DockLockIcon, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.props.locked = this.props.locked ? false : true;
-      // console.log('handle: ' + this.props.locked)
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      // var cx = React.addons.classSet;
-      // var classes = cx({
-      //   'dock-lock': !this.props.locked,
-      //   'dock-unlock': this.props.locked
-      // });
-
-      // console.log(classes);
-      // console.log(this.props.locked);
-
-      // return (
-      //   React.createElement('div', {
-      //     className: `dock-icon ${classes} col-2`,
-      //     onClick: this.handleClick.bind(this)
-      //   })
-      // )
-
-      return React.createElement('div', {
-        className: this.props.locked === this.props.locked ? 'dock-icon dock-lock col-2' : 'dock-icon dock-unlock col-2',
-        // className: classes,
-        onClick: this.handleClick.bind(this)
-      });
-    }
-  }]);
-
-  return DockLockIcon;
-})(React.Component);
-
-;
-
-/**
- * Add device icon
- */
-
-var DockAddDeviceIcon = (function (_React$Component3) {
-  function DockAddDeviceIcon() {
-    _classCallCheck(this, DockAddDeviceIcon);
-
-    if (_React$Component3 != null) {
-      _React$Component3.apply(this, arguments);
-    }
-  }
-
-  _inherits(DockAddDeviceIcon, _React$Component3);
+  _inherits(DockAddDeviceIcon, _React$Component2);
 
   _createClass(DockAddDeviceIcon, [{
     key: 'render',
@@ -122,16 +103,16 @@ var DockAddDeviceIcon = (function (_React$Component3) {
  * Workspace carousel
  */
 
-var DockDevicesCarousel = (function (_React$Component4) {
+var DockDevicesCarousel = (function (_React$Component3) {
   function DockDevicesCarousel() {
     _classCallCheck(this, DockDevicesCarousel);
 
-    if (_React$Component4 != null) {
-      _React$Component4.apply(this, arguments);
+    if (_React$Component3 != null) {
+      _React$Component3.apply(this, arguments);
     }
   }
 
-  _inherits(DockDevicesCarousel, _React$Component4);
+  _inherits(DockDevicesCarousel, _React$Component3);
 
   _createClass(DockDevicesCarousel, [{
     key: 'render',
@@ -154,16 +135,16 @@ var DockDevicesCarousel = (function (_React$Component4) {
  * Dock device icon
  */
 
-var DockDeviceIcon = (function (_React$Component5) {
+var DockDeviceIcon = (function (_React$Component4) {
   function DockDeviceIcon() {
     _classCallCheck(this, DockDeviceIcon);
 
-    if (_React$Component5 != null) {
-      _React$Component5.apply(this, arguments);
+    if (_React$Component4 != null) {
+      _React$Component4.apply(this, arguments);
     }
   }
 
-  _inherits(DockDeviceIcon, _React$Component5);
+  _inherits(DockDeviceIcon, _React$Component4);
 
   _createClass(DockDeviceIcon, [{
     key: 'render',
@@ -187,16 +168,16 @@ var DockDeviceIcon = (function (_React$Component5) {
 
 ;
 
-var DockIconIndicate = (function (_React$Component6) {
+var DockIconIndicate = (function (_React$Component5) {
   function DockIconIndicate() {
     _classCallCheck(this, DockIconIndicate);
 
-    if (_React$Component6 != null) {
-      _React$Component6.apply(this, arguments);
+    if (_React$Component5 != null) {
+      _React$Component5.apply(this, arguments);
     }
   }
 
-  _inherits(DockIconIndicate, _React$Component6);
+  _inherits(DockIconIndicate, _React$Component5);
 
   _createClass(DockIconIndicate, [{
     key: 'render',
@@ -210,16 +191,16 @@ var DockIconIndicate = (function (_React$Component6) {
 
 ;
 
-var DockApplicationMenuIcon = (function (_React$Component7) {
+var DockApplicationMenuIcon = (function (_React$Component6) {
   function DockApplicationMenuIcon() {
     _classCallCheck(this, DockApplicationMenuIcon);
 
-    if (_React$Component7 != null) {
-      _React$Component7.apply(this, arguments);
+    if (_React$Component6 != null) {
+      _React$Component6.apply(this, arguments);
     }
   }
 
-  _inherits(DockApplicationMenuIcon, _React$Component7);
+  _inherits(DockApplicationMenuIcon, _React$Component6);
 
   _createClass(DockApplicationMenuIcon, [{
     key: 'render',
