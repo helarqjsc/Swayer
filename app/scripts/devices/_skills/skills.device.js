@@ -174,9 +174,7 @@ var SkillsPads = (function (_React$Component3) {
         });
       }
 
-      setTimeout(function () {
-        Audio.refresh();
-      }, 1000);
+      Audio.refresh();
 
       Skills.setBGColor();
     }

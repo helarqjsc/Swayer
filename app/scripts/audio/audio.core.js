@@ -99,7 +99,7 @@ var Audio = {
    */
   refresh: function refresh() {
     // Clear
-    // Audio.contexts.length = 0;
+    Audio.contexts.length = 0;
 
     // For each audio element
     $('.audio').each(function (i) {
@@ -112,7 +112,7 @@ var Audio = {
       Audio.setFile(i, file);
     });
 
-    // Audio.bind();
+    Audio.bind();
   },
 
   /**

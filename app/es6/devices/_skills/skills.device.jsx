@@ -153,7 +153,7 @@ class SkillsPads extends React.Component {
       $(_this).attr('data-audio-file', file);
     })}
 
-    setTimeout(function() { Audio.refresh(); }, 1000);
+    Audio.refresh();
 
     Skills.setBGColor();
   }
