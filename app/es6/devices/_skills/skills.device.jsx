@@ -2,6 +2,7 @@
 
 'use strict';
 
+// Total files in each folder
 var skillsSamples = {
   'all': 470,
   'kick': 778,
@@ -9,7 +10,8 @@ var skillsSamples = {
   'snare': 468,
 };
 
-
+// Different pads patterns depends on
+// pads length with columns and rows length
 var padPatterns = {
   'cols2rows2': {
     'pattern': [
@@ -76,13 +78,41 @@ var padPatterns = {
   },
 };
 
-
+/**
+ * Skills device
+ */
 class Skills extends React.Component {
 
+  /**
+   * Get current skills device pads 
+   *
+   * @return {Object} DOM element
+   */
+  static getCurrentDevicePads($device) {
+    return Device.getCurrentDevice().find('.skills-pads');
+  }
+
+  /**
+   * Get current skills device pad 
+   *
+   * @return {Object} DOM element
+   */
+  static getCurrentDevicePad($device) {
+    return Skills.getCurrentDevicePads(Device.getCurrentDevice()).find('.pad');
+  }
+
+  /**
+   * Get Skills device background color
+   *
+   * @return {String} RGB color
+   */
   static getColor() {
     return Helpers.getRGBColor();
   }
 
+  /**
+   * Set Skills device background color
+   */
   static setBGColor() {
     var $device = $(event.target).closest('.device');
 
@@ -94,7 +124,7 @@ class Skills extends React.Component {
       React.createElement('div', {
           className: "device device-skills",
           style: {background: Skills.getColor()}
-          },
+        },
         <SkillsHeader />,
         <SkillsPads cols="3" rows="4" />,
         <DeviceMenu />
@@ -104,7 +134,11 @@ class Skills extends React.Component {
 };
 
 
+/**
+ * Skills header
+ */
 class SkillsHeader extends React.Component {
+
   render() {
     return (
       <section className="skills-header">
@@ -124,7 +158,8 @@ class SkillsHeader extends React.Component {
             </div>
 
             <div className="col-4 text-right">
-              <div className="icon random-one"></div>
+              <div className="icon random-one" 
+                onClick={SkillsPad.shuffleOne}/>
             </div>
 
           </div>
@@ -135,26 +170,22 @@ class SkillsHeader extends React.Component {
 };
 
 
+/**
+ * Field with pads
+ */
 class SkillsPads extends React.Component {
 
+  // Shuffle all pads in current device
   static shuffle() {
-    var $device = $(event.target).closest('.device'),
-        $pads = $device.find('.skills-pads'),
-        $pad = $pads.find('.pad'),
+    var $pad = Skills.getCurrentDevicePad(),
 
         file, kind = '';
 
-    {$pad.map(function(i) {
-      var _this = this;
-
-      kind = $(_this).attr('data-audio-kind');
-      file = SkillsPad.setAudioFile(kind);
-
-      $(_this).attr('data-audio-file', file);
+    {$pad.map(function() {
+      SkillsPad.setPadFileAttribute(this);
     })}
 
     Audio.refresh();
-
     Skills.setBGColor();
   }
 
@@ -177,8 +208,35 @@ class SkillsPads extends React.Component {
 };
 
 
+/**
+ * The one pad
+ */
 class SkillsPad extends React.Component {
 
+  // Shuffle only one pad
+  static shuffleOne() {
+    var $pad = Skills.getCurrentDevicePad();
+
+    $pad.toggleClass('pad-wants-to-change');
+  }
+
+  /**
+   * Set `data-audio-kind` attribute to the pad
+   * 
+   * @param {Object} Pad
+   */
+  static setPadFileAttribute(pad) {
+    var kind = $(pad).attr('data-audio-kind'),
+        file = SkillsPad.setAudioFile(kind);
+
+    $(pad).attr('data-audio-file', file);
+  }
+
+  /**
+   * Set audio file in to pad attribute
+   *
+   * @param {String} Folder name
+   */
   static setAudioFile(kind) {
     var totalFiles = skillsSamples[kind],
         file = Helpers.getRandom(1, totalFiles);
@@ -186,8 +244,31 @@ class SkillsPad extends React.Component {
     return `Skills/${kind}/${file}.mp3`;
   }
 
-  play(e) {
-    Audio.play($('.pad').index(event.target), false);
+  /**
+   * Play sample
+   * or if pad has class `pad-wants-to-change`
+   * then shuffle pad
+   */
+  play() {
+    var $pad = $(event.target);
+
+    if (!$pad.hasClass('pad-wants-to-change')) {
+
+      // Second param means that the sample is not loop
+      Audio.play($('.pad').index(event.target), false);
+
+    } else {
+
+      SkillsPad.setPadFileAttribute($pad);
+
+      $pad.addClass('refresh-one');
+
+      setTimeout(function() {
+        $pad.removeClass('refresh-one');
+        Audio.refresh();
+      }, 700);
+
+    }
   }
 
   render() {
@@ -208,7 +289,7 @@ class SkillsPad extends React.Component {
           {this.kind}
         </p>
 
-        <img src="/svg/skills/random-one.svg" className="refresh" />
+        <img src="/svg/skills/random-one-black.svg" className="refresh" />
       </div>
     )
   }

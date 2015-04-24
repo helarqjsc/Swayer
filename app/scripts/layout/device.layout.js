@@ -28,6 +28,11 @@ var Device = (function (_React$Component) {
     value: function render() {
       return React.createElement('div', { className: 'device' }, React.createElement(Skills, null), React.createElement(DeviceMenu, null));
     }
+  }], [{
+    key: 'getCurrentDevice',
+    value: function getCurrentDevice() {
+      return $(event.target).closest('.device');
+    }
   }]);
 
   return Device;

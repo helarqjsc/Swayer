@@ -8,12 +8,15 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 
+// Total files in each folder
 var skillsSamples = {
   all: 470,
   kick: 778,
   hat: 331,
   snare: 468 };
 
+// Different pads patterns depends on
+// pads length with columns and rows length
 var padPatterns = {
   cols2rows2: {
     pattern: ['all', 'all', 'kick', 'snare'] },
@@ -33,6 +36,10 @@ var padPatterns = {
     pattern: ['all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all', 'all', 'all'] },
   cols4rows4: {
     pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all', 'all', 'all', 'all', 'all'] } };
+
+/**
+ * Skills device
+ */
 
 var Skills = (function (_React$Component) {
   function Skills() {
@@ -54,12 +61,44 @@ var Skills = (function (_React$Component) {
       }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: '3', rows: '4' }), React.createElement(DeviceMenu, null));
     }
   }], [{
+    key: 'getCurrentDevicePads',
+
+    /**
+     * Get current skills device pads 
+     *
+     * @return {Object} DOM element
+     */
+    value: function getCurrentDevicePads($device) {
+      return Device.getCurrentDevice().find('.skills-pads');
+    }
+  }, {
+    key: 'getCurrentDevicePad',
+
+    /**
+     * Get current skills device pad 
+     *
+     * @return {Object} DOM element
+     */
+    value: function getCurrentDevicePad($device) {
+      return Skills.getCurrentDevicePads(Device.getCurrentDevice()).find('.pad');
+    }
+  }, {
     key: 'getColor',
+
+    /**
+     * Get Skills device background color
+     *
+     * @return {String} RGB color
+     */
     value: function getColor() {
       return Helpers.getRGBColor();
     }
   }, {
     key: 'setBGColor',
+
+    /**
+     * Set Skills device background color
+     */
     value: function setBGColor() {
       var $device = $(event.target).closest('.device');
 
@@ -71,6 +110,10 @@ var Skills = (function (_React$Component) {
 })(React.Component);
 
 ;
+
+/**
+ * Skills header
+ */
 
 var SkillsHeader = (function (_React$Component2) {
   function SkillsHeader() {
@@ -112,7 +155,8 @@ var SkillsHeader = (function (_React$Component2) {
             React.createElement(
               'div',
               { className: 'col-4 text-right' },
-              React.createElement('div', { className: 'icon random-one' })
+              React.createElement('div', { className: 'icon random-one',
+                onClick: SkillsPad.shuffleOne })
             )
           )
         )
@@ -124,6 +168,10 @@ var SkillsHeader = (function (_React$Component2) {
 })(React.Component);
 
 ;
+
+/**
+ * Field with pads
+ */
 
 var SkillsPads = (function (_React$Component3) {
   function SkillsPads() {
@@ -156,26 +204,20 @@ var SkillsPads = (function (_React$Component3) {
     }
   }], [{
     key: 'shuffle',
+
+    // Shuffle all pads in current device
     value: function shuffle() {
-      var $device = $(event.target).closest('.device'),
-          $pads = $device.find('.skills-pads'),
-          $pad = $pads.find('.pad'),
+      var $pad = Skills.getCurrentDevicePad(),
           file,
           kind = '';
 
       {
-        $pad.map(function (i) {
-          var _this = this;
-
-          kind = $(_this).attr('data-audio-kind');
-          file = SkillsPad.setAudioFile(kind);
-
-          $(_this).attr('data-audio-file', file);
+        $pad.map(function () {
+          SkillsPad.setPadFileAttribute(this);
         });
       }
 
       Audio.refresh();
-
       Skills.setBGColor();
     }
   }]);
@@ -184,6 +226,10 @@ var SkillsPads = (function (_React$Component3) {
 })(React.Component);
 
 ;
+
+/**
+ * The one pad
+ */
 
 var SkillsPad = (function (_React$Component4) {
   function SkillsPad() {
@@ -198,8 +244,30 @@ var SkillsPad = (function (_React$Component4) {
 
   _createClass(SkillsPad, [{
     key: 'play',
-    value: function play(e) {
-      Audio.play($('.pad').index(event.target), false);
+
+    /**
+     * Play sample
+     * or if pad has class `pad-wants-to-change`
+     * then shuffle pad
+     */
+    value: function play() {
+      var $pad = $(event.target);
+
+      if (!$pad.hasClass('pad-wants-to-change')) {
+
+        // Second param means that the sample is not loop
+        Audio.play($('.pad').index(event.target), false);
+      } else {
+
+        SkillsPad.setPadFileAttribute($pad);
+
+        $pad.addClass('refresh-one');
+
+        setTimeout(function () {
+          $pad.removeClass('refresh-one');
+          Audio.refresh();
+        }, 700);
+      }
     }
   }, {
     key: 'render',
@@ -222,11 +290,40 @@ var SkillsPad = (function (_React$Component4) {
           { className: 'show' },
           this.kind
         ),
-        React.createElement('img', { src: '/svg/skills/random-one.svg', className: 'refresh' })
+        React.createElement('img', { src: '/svg/skills/random-one-black.svg', className: 'refresh' })
       );
     }
   }], [{
+    key: 'shuffleOne',
+
+    // Shuffle only one pad
+    value: function shuffleOne() {
+      var $pad = Skills.getCurrentDevicePad();
+
+      $pad.toggleClass('pad-wants-to-change');
+    }
+  }, {
+    key: 'setPadFileAttribute',
+
+    /**
+     * Set `data-audio-kind` attribute to the pad
+     * 
+     * @param {Object} Pad
+     */
+    value: function setPadFileAttribute(pad) {
+      var kind = $(pad).attr('data-audio-kind'),
+          file = SkillsPad.setAudioFile(kind);
+
+      $(pad).attr('data-audio-file', file);
+    }
+  }, {
     key: 'setAudioFile',
+
+    /**
+     * Set audio file in to pad attribute
+     *
+     * @param {String} Folder name
+     */
     value: function setAudioFile(kind) {
       var totalFiles = skillsSamples[kind],
           file = Helpers.getRandom(1, totalFiles);

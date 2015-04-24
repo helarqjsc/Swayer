@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 100em 504.1em;
+    background-size: 100em 588.3em;
 }
 
 .no-svg .icon:before {
@@ -69,32 +69,38 @@
     height: 5em;
 }
 
-.icon.repeat:before {
+.icon.random-one-black:before {
     background-position: 0em -407.4em;
+    width: 59.529999999999994em;
+    height: 84.19em;
+}
+
+.icon.repeat:before {
+    background-position: 0em -491.6em;
     width: 9.6em;
     height: 9.6em;
 }
 
 .icon.skills-icon:before {
-    background-position: 0em -417em;
+    background-position: 0em -501.2em;
     width: 36.1em;
     height: 36.1em;
 }
 
 .icon.skills-menu:before {
-    background-position: 0em -453.1em;
+    background-position: 0em -537.3em;
     width: 5em;
     height: 5em;
 }
 
 .icon.unlock:before {
-    background-position: 0em -458.1em;
+    background-position: 0em -542.3em;
     width: 36em;
     height: 36em;
 }
 
 .icon.volume:before {
-    background-position: 0em -494.1em;
+    background-position: 0em -578.3em;
     width: 10em;
     height: 10em;
 }
