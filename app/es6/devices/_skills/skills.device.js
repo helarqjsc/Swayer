@@ -269,7 +269,7 @@ class SkillsPad extends React.Component {
 
     return (
       <div
-        className={`pad audio col-${cols} pad-row-${rows}`}
+        className={`pad audio col-${cols} pad-row-${rows} js-hold`}
         data-audio-file={SkillsPad._setAudioFile(kind)}
         data-audio-kind={kind}
         data-audio-length="long"

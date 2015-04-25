@@ -2,28 +2,14 @@
 
 'use strict';
 
-var Hold = {
+!(function () {
+  'use strict';
 
-  /**
-   * Refresh (rebind)
-   */
-  refresh: function refresh() {
+  $(window).load(function () {
     $('.js-hold').on('mousedown', function () {
       $(event.target).addClass('hold');
     }).on('mouseup', function () {
       $(event.target).removeClass('hold');
     });
-  },
-
-  /**
-   * Init
-   */
-  init: function init() {
-    var _this = this;
-
-    $(window).load(function () {
-      _this.refresh();
-    });
-  } };
-
-Hold.init();
+  });
+})();

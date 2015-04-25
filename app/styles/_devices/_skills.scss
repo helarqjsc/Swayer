@@ -8,7 +8,6 @@ $device-name: 'skills';
 
 // Device
 .device-skills {
-  @import "_skills/_header";
   @import "_skills/_pads";
   @import "_skills/_menu";
 }
