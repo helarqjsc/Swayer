@@ -46,9 +46,17 @@ var Skills = React.createClass({
   getInitialState: function getInitialState() {
     return {
       grid: {
-        cols: 4,
+        cols: 2,
         rows: 3 }
     };
+  },
+
+  _changeGrid: function _changeGrid() {
+    this.setState({
+      grid: {
+        cols: 4,
+        rows: 4 }
+    });
   },
 
   /**
@@ -93,7 +101,7 @@ var Skills = React.createClass({
       style: { background: this._getColor() }
     }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, {
       cols: this.state.grid.cols,
-      rows: this.state.grid.rows }), React.createElement(DeviceMenu, null));
+      rows: this.state.grid.rows }), React.createElement(DeviceMenu, null), React.createElement('button', { value: 'asd', onClick: this._changeGrid }));
   }
 });
 

@@ -10,6 +10,7 @@ var skillsSamples = {
   'snare': 468,
 };
 
+
 // Different pads patterns depends on
 // pads length with columns and rows length
 var padPatterns = {
@@ -78,6 +79,7 @@ var padPatterns = {
   },
 };
 
+
 /**
  * Skills device
  */
@@ -86,10 +88,19 @@ var Skills = React.createClass({
   getInitialState() {
     return {
       grid: {
-        cols: 4,
+        cols: 2,
         rows: 3,
       }
     };
+  },
+
+  _changeGrid() {
+    this.setState({
+      grid: {
+        cols: 4,
+        rows: 4,
+      }
+    });
   },
 
   /**
@@ -138,7 +149,8 @@ var Skills = React.createClass({
         <SkillsPads 
           cols={this.state.grid.cols} 
           rows={this.state.grid.rows} />,
-        <DeviceMenu />
+        <DeviceMenu />,
+        <button value="asd" onClick={this._changeGrid} />
       )
     );
   }
@@ -149,7 +161,6 @@ var Skills = React.createClass({
  * Skills header
  */
 class SkillsHeader extends React.Component {
-
   render() {
     return (
       <section className="skills-header">

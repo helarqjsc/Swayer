@@ -14,8 +14,7 @@ class Device extends React.Component {
   render() {
     return (
       React.createElement('div', {className: "device"},
-        <Skills />,
-        <DeviceMenu />
+        <Skills />
       )
     );
   }

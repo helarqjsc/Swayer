@@ -26,7 +26,7 @@ var Device = (function (_React$Component) {
   _createClass(Device, [{
     key: 'render',
     value: function render() {
-      return React.createElement('div', { className: 'device' }, React.createElement(Skills, null), React.createElement(DeviceMenu, null));
+      return React.createElement('div', { className: 'device' }, React.createElement(Skills, null));
     }
   }], [{
     key: 'getCurrentDevice',
