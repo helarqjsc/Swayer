@@ -6,11 +6,6 @@
  * Device
  */
 class Device extends React.Component {
-
-  static getCurrentDevice() {
-    return $(event.target).closest('.device');
-  }
-
   render() {
     return (
       React.createElement('div', {className: "device"},
@@ -49,3 +44,11 @@ class DeviceMenu extends React.Component {
     );
   }
 };
+
+class DeviceHelpers {
+
+  static _getCurrentDevice() {
+    return $(event.target).closest('.device');
+  }
+  
+}

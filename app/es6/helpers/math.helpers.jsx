@@ -2,25 +2,25 @@
 
 'use strict';
 
-class Helpers extends React.Component {
+class Helpers {
 
-  static getRandom(min, max) {
+  static _getRandom(max, min = 1) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  static getRGBColor() {
+  static _getRGBColor() {
     var red, green, blue, rgb;
 
-    red = Helpers.getRandom(0, 200);
-    green = Helpers.getRandom(0, 200);
-    blue = Helpers.getRandom(0, 200);
+    red = Helpers._getRandom(200);
+    green = Helpers._getRandom(200);
+    blue = Helpers._getRandom(200);
 
     rgb = `rgb(${red}, ${green}, ${blue})`;
 
     return rgb;
   }
 
-  static setBGColor($elem, color) {
+  static _setBGColor($elem, color) {
     $elem.css('background', color);
   }
 

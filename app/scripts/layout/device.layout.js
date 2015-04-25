@@ -28,11 +28,6 @@ var Device = (function (_React$Component) {
     value: function render() {
       return React.createElement('div', { className: 'device' }, React.createElement(Skills, null));
     }
-  }], [{
-    key: 'getCurrentDevice',
-    value: function getCurrentDevice() {
-      return $(event.target).closest('.device');
-    }
   }]);
 
   return Device;
@@ -85,3 +80,18 @@ var DeviceMenu = (function (_React$Component2) {
 })(React.Component);
 
 ;
+
+var DeviceHelpers = (function () {
+  function DeviceHelpers() {
+    _classCallCheck(this, DeviceHelpers);
+  }
+
+  _createClass(DeviceHelpers, null, [{
+    key: '_getCurrentDevice',
+    value: function _getCurrentDevice() {
+      return $(event.target).closest('.device');
+    }
+  }]);
+
+  return DeviceHelpers;
+})();

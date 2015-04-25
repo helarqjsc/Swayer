@@ -111,39 +111,6 @@ var Audio = {
       // ...and set file
       Audio.setFile(i, file);
     });
-
-    Audio.bind();
-  },
-
-  /**
-   * Bind event on audio elemet
-   *
-   * Touch start and end
-   */
-  bind: function bind() {
-    var loop, index, duration;
-
-    $('.js-pad')
-    // Event to play
-    .on('touchstart click', function () {
-
-      index = $('.js-pad').index($(event.target));
-
-      // Check loop or not sample
-      loop = $(event.target).attr('data-audio-hit') === 'loop' ? true : false;
-      // Play
-      Audio.play(index, loop);
-    })
-    // Event to stop
-    .on('touchend mouseup', function () {
-      duration = $(event.target).attr('data-audio-length');
-
-      index = $('.js-pad').index($(event.target));
-
-      if (duration === 'short') {
-        Audio.stop(index);
-      }
-    });
   },
 
   /**

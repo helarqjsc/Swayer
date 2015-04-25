@@ -57,48 +57,14 @@ var Skills = React.createClass({
         cols: 4,
         rows: 4 }
     });
-  },
 
-  /**
-   * Get current skills device pads 
-   *
-   * @return {Object} DOM element
-   */
-  _getCurrentDevicePads: function _getCurrentDevicePads($device) {
-    return Device._getCurrentDevice().find('.skills-pads');
-  },
-
-  /**
-   * Get current skills device pad 
-   *
-   * @return {Object} DOM element
-   */
-  _getCurrentDevicePad: function _getCurrentDevicePad($device) {
-    return Skills._getCurrentDevicePads(Device._getCurrentDevice()).find('.pad');
-  },
-
-  /**
-   * Get Skills device background color
-   *
-   * @return {String} RGB color
-   */
-  _getColor: function _getColor() {
-    return Helpers.getRGBColor();
-  },
-
-  /**
-   * Set Skills device background color
-   */
-  _setBGColor: function _setBGColor() {
-    var $device = $(event.target).closest('.device');
-
-    Helpers._setBGColor($device, this._getColor());
+    // TODO: Audio.refresh();
   },
 
   render: function render() {
     return React.createElement('div', {
       className: 'device device-skills',
-      style: { background: this._getColor() }
+      style: { background: SkillsHelpers._getColor() }
     }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, {
       cols: this.state.grid.cols,
       rows: this.state.grid.rows }), React.createElement(DeviceMenu, null), React.createElement('button', { value: 'asd', onClick: this._changeGrid }));
@@ -201,7 +167,8 @@ var SkillsPads = (function (_React$Component2) {
 
     // shuffle all pads in current device
     value: function _shuffle() {
-      var $pad = Skills._getCurrentDevicePad(),
+      var $device = $(event.target).closest('.device'),
+          $pad = SkillsHelpers._getCurrentDevicePad($device),
           file,
           kind = '';
 
@@ -209,10 +176,10 @@ var SkillsPads = (function (_React$Component2) {
         $pad.map(function () {
           SkillsPad._setPadFileAttribute(this);
         });
-      }
+      };
 
       Audio.refresh();
-      Skills._setBGColor();
+      SkillsHelpers._setBGColor($device);
     }
   }]);
 
@@ -295,7 +262,7 @@ var SkillsPad = (function (_React$Component3) {
 
     // shuffle only one pad
     value: function _shuffleOne() {
-      var $pad = Skills._getCurrentDevicePad();
+      var $pad = SkillsHelpers._getCurrentDevicePad();
 
       $pad.toggleClass('pad-wants-to-change');
     }
@@ -323,7 +290,7 @@ var SkillsPad = (function (_React$Component3) {
      */
     value: function _setAudioFile(kind) {
       var totalFiles = skillsSamples[kind],
-          file = Helpers.getRandom(1, totalFiles);
+          file = Helpers._getRandom(totalFiles);
 
       return 'Skills/' + kind + '/' + file + '.mp3';
     }
@@ -333,3 +300,55 @@ var SkillsPad = (function (_React$Component3) {
 })(React.Component);
 
 ;
+
+var SkillsHelpers = (function () {
+  function SkillsHelpers() {
+    _classCallCheck(this, SkillsHelpers);
+  }
+
+  _createClass(SkillsHelpers, null, [{
+    key: '_getCurrentDevicePads',
+
+    /**
+     * Get current skills device pads 
+     *
+     * @return {Object} DOM element
+     */
+    value: function _getCurrentDevicePads($device) {
+      return DeviceHelpers._getCurrentDevice().find('.skills-pads');
+    }
+  }, {
+    key: '_getCurrentDevicePad',
+
+    /**
+     * Get current skills device pad 
+     *
+     * @return {Object} DOM element
+     */
+    value: function _getCurrentDevicePad($device) {
+      return SkillsHelpers._getCurrentDevicePads(DeviceHelpers._getCurrentDevice()).find('.pad');
+    }
+  }, {
+    key: '_getColor',
+
+    /**
+     * Get Skills device background color
+     *
+     * @return {String} RGB color
+     */
+    value: function _getColor() {
+      return Helpers._getRGBColor();
+    }
+  }, {
+    key: '_setBGColor',
+
+    /**
+     * Set Skills device background color
+     */
+    value: function _setBGColor($device) {
+      Helpers._setBGColor($device, SkillsHelpers._getColor());
+    }
+  }]);
+
+  return SkillsHelpers;
+})();

@@ -51,11 +51,7 @@ var DockLockIcon = React.createClass({
   },
 
   handleClick: function handleClick() {
-    var lock = !this.state.locked ? true : false;
-
-    this.setState({
-      locked: lock
-    });
+    this.setState({ locked: !this.state.locked });
   },
 
   render: function render() {
@@ -134,50 +130,46 @@ var DockDevicesCarousel = (function (_React$Component3) {
 /**
  * Dock device icon
  */
+var DockDeviceIcon = React.createClass({
+  displayName: 'DockDeviceIcon',
 
-var DockDeviceIcon = (function (_React$Component4) {
-  function DockDeviceIcon() {
-    _classCallCheck(this, DockDeviceIcon);
+  getInitialState: function getInitialState() {
+    return {
+      active: false
+    };
+  },
+
+  _selectDevice: function _selectDevice() {
+    Workspace.toDevice();
+
+    this.setState({ active: !this.state.active });
+  },
+
+  render: function render() {
+    var device = this.props.device,
+        elClass = 'dock-icon dock-device dock-device-' + device + ' col-2';
+
+    return React.createElement(
+      'div',
+      {
+        className: elClass,
+        onClick: this._selectDevice,
+        'data-device': this.props.device },
+      this.state.active === true ? React.createElement(DockIconIndicate, null) : null
+    );
+  }
+});
+
+var DockIconIndicate = (function (_React$Component4) {
+  function DockIconIndicate() {
+    _classCallCheck(this, DockIconIndicate);
 
     if (_React$Component4 != null) {
       _React$Component4.apply(this, arguments);
     }
   }
 
-  _inherits(DockDeviceIcon, _React$Component4);
-
-  _createClass(DockDeviceIcon, [{
-    key: 'render',
-    value: function render() {
-      var device = this.props.device,
-          elClass = 'dock-icon dock-device dock-device-' + device + ' col-2';
-
-      return React.createElement(
-        'div',
-        {
-          className: elClass,
-          onClick: Workspace.toDevice,
-          'data-device': this.props.device },
-        this.props.active === 'true' ? React.createElement(DockIconIndicate, null) : null
-      );
-    }
-  }]);
-
-  return DockDeviceIcon;
-})(React.Component);
-
-;
-
-var DockIconIndicate = (function (_React$Component5) {
-  function DockIconIndicate() {
-    _classCallCheck(this, DockIconIndicate);
-
-    if (_React$Component5 != null) {
-      _React$Component5.apply(this, arguments);
-    }
-  }
-
-  _inherits(DockIconIndicate, _React$Component5);
+  _inherits(DockIconIndicate, _React$Component4);
 
   _createClass(DockIconIndicate, [{
     key: 'render',
@@ -191,16 +183,16 @@ var DockIconIndicate = (function (_React$Component5) {
 
 ;
 
-var DockApplicationMenuIcon = (function (_React$Component6) {
+var DockApplicationMenuIcon = (function (_React$Component5) {
   function DockApplicationMenuIcon() {
     _classCallCheck(this, DockApplicationMenuIcon);
 
-    if (_React$Component6 != null) {
-      _React$Component6.apply(this, arguments);
+    if (_React$Component5 != null) {
+      _React$Component5.apply(this, arguments);
     }
   }
 
-  _inherits(DockApplicationMenuIcon, _React$Component6);
+  _inherits(DockApplicationMenuIcon, _React$Component5);
 
   _createClass(DockApplicationMenuIcon, [{
     key: 'render',

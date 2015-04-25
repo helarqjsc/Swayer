@@ -29,12 +29,7 @@ var DockLockIcon = React.createClass({
   },
 
   handleClick() {
-    var lock = !this.state.locked ? true : false;
-
-    this.setState({
-      locked: lock
-    });
-
+    this.setState({locked: !this.state.locked});
   },
 
   render() {
@@ -85,7 +80,20 @@ class DockDevicesCarousel extends React.Component {
 /**
  * Dock device icon
  */
-class DockDeviceIcon extends React.Component {
+var DockDeviceIcon = React.createClass({
+  
+  getInitialState() {
+    return {
+      active: false
+    };
+  },
+
+  _selectDevice() {
+    Workspace.toDevice();
+
+    this.setState({active: !this.state.active});
+  },
+
   render() {
     var
       device = this.props.device,
@@ -94,13 +102,13 @@ class DockDeviceIcon extends React.Component {
     return (
       <div 
         className={elClass} 
-        onClick={Workspace.toDevice}
+        onClick={this._selectDevice}
         data-device={this.props.device}>
-        {this.props.active === 'true' ? <DockIconIndicate /> : null}
+        {this.state.active === true ? <DockIconIndicate /> : null}
       </div>
     )
   }
-};
+});
 
 
 class DockIconIndicate extends React.Component {
