@@ -9,8 +9,15 @@ var SkillsMenu = {
    */
   bind: function bind() {
 
+    // Shuffle all pads
     $('.js-skills-random-all').on('click', function (e) {
       Skills.render.pads($(event.target));
+    });
+
+    // Shuffle only one pad
+    $('.js-skills-random-one').on('click', function (e) {
+      Skills.shuffle = !Skills.shuffle ? true : false;
+      Skills.render.shuffleOnePad($(event.target));
     });
 
     //

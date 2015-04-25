@@ -8,7 +8,30 @@ var skillsSamples = {
   hat: 331,
   snare: 468 };
 
+var padPatterns = {
+  cols2rows2: {
+    pattern: ['all', 'all', 'kick', 'snare'] },
+  cols3rows2: {
+    pattern: ['all', 'all', 'all', 'kick', 'hat', 'snare'] },
+  cols4rows2: {
+    pattern: ['all', 'all', 'all', 'all', 'kick', 'hat', 'snare', 'all'] },
+  cols2rows3: {
+    pattern: ['all', 'all', 'kick', 'snare', 'hat', 'all'] },
+  cols2rows4: {
+    pattern: ['all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all'] },
+  cols3rows3: {
+    pattern: ['all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all'] },
+  cols3rows4: {
+    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all'] },
+  cols4rows3: {
+    pattern: ['all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all', 'all', 'all'] },
+  cols4rows4: {
+    pattern: ['all', 'all', 'all', 'all', 'all', 'all', 'all', 'all', 'kick', 'snare', 'hat', 'all', 'all', 'all', 'all', 'all'] } };
+
 var Skills = {
+
+  // Shuffle one pad
+  shuffle: false,
 
   // Work with sample
   sample: {
@@ -75,6 +98,8 @@ var Skills = {
 
       this.appendPads($pads);
 
+      // console.log('render')
+
       $device.css('background', this.getRandomRGBA());
 
       // After creating all pads
@@ -83,6 +108,23 @@ var Skills = {
 
       // Refresh (rebind) touch event on the pads
       Hold.refresh();
+    },
+
+    shuffleOnePad: function shuffleOnePad($elem) {
+      var $device, $pads;
+
+      if ($elem !== undefined) {
+
+        $device = $elem.closest('.device-skills');
+        $pads = $device.find('.skills-pads');
+      } else if ($elem === undefined) {
+
+        $device = $('.device-skills');
+        $pads = $('.skills-pads');
+      }
+
+      $pads.find('.pad').addClass('pad-wants-to-change');
+      console.log($pads.find('.pad'));
     },
 
     appendPads: function appendPads($pads) {
@@ -114,7 +156,7 @@ var Skills = {
         }
 
         // Append one pad
-        $pads.append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n          </div>');
+        $pads.append('\n          <div class="pad js-pad js-hold audio col-' + col + ' pad-row-' + this.rows + '"\n            audio-file="' + file + '"\n            audio-duration="long"\n            audio-continue="oneshot">\n            <p class="' + show + '">\n              ' + kind + '\n            </p>\n            <img src="/svg/skills/random-one.svg" class="refresh" />\n          </div>');
       };
     },
 

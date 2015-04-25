@@ -2,6 +2,8 @@
 
 'use strict';
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 var Audio = {
 
   // AudioContext sources
@@ -18,6 +20,7 @@ var Audio = {
    */
   createContext(i) {
     this.contexts.push(new webkitAudioContext());
+    // this.contexts[i] = new webkitAudioContext();
   },
 
   /**
@@ -100,10 +103,11 @@ var Audio = {
 
     // For each audio element
     $('.audio').each(function(i) {
-      var file = $(this).attr('audio-file');
+      var file = $(this).attr('data-audio-file');
 
       // Create context...
       Audio.createContext(i);
+
       // ...and set file
       Audio.setFile(i, file);
     });
@@ -121,18 +125,18 @@ var Audio = {
 
     $('.js-pad')
       // Event to play
-      .on('mousedown', () => {
+      .on('touchstart click', () => {
 
         index = $('.js-pad').index($(event.target));
 
         // Check loop or not sample
-        loop = ($(event.target).attr('audio-continue') === 'loop') ? true : false;
+        loop = ($(event.target).attr('data-audio-hit') === 'loop') ? true : false;
         // Play
         Audio.play(index, loop);
       })
       // Event to stop
-      .on('mouseup', () => {
-        duration = $(event.target).attr('audio-duration');
+      .on('touchend mouseup', () => {
+        duration = $(event.target).attr('data-audio-length');
 
         index = $('.js-pad').index($(event.target));
 

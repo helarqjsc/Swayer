@@ -23,14 +23,6 @@ $icon-margin: 2vw;
 
     margin: $icon-margin;
   
-    // Show indicate for active device
-    &.show-device-indicator {
-
-      .dock-icon-active-dot {
-        display: inline-block;
-      }
-    }
-  
     // Add device
     &.dock-add-device {
       @include icon('+');
@@ -57,10 +49,6 @@ $icon-margin: 2vw;
 
       @include circle();
       
-      // Show when device is active
-      // Parent should has class `active`
-      display: none;
-
       width: $size;
       height: $size;
 

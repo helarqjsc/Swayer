@@ -4,18 +4,26 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+// var reload = browserSync.reload;
 var babel = require('gulp-babel');
 var svgSprite = require("gulp-svg-sprites");
 
+function swallowError(error) {
+
+  //If you want details of the error in the console
+  console.log(error.toString());
+
+  this.emit('end');
+}
+
 gulp.task('es6', function() {
-  return gulp.src('app/es6/**/*.js')
+  return gulp.src('app/es6/**/*.{jsx,js}')
     .pipe(babel())
-    .on('error', console.error.bind(console))
+    .on('error', swallowError)
     .pipe(gulp.dest('app/scripts/'))
-     .pipe(reload({
-      stream: true
-    }));
+    // .pipe(reload({
+    //   stream: true
+    // }));
 });
 
 gulp.task('styles', function() {
@@ -34,20 +42,20 @@ gulp.task('styles', function() {
     ]))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe(reload({
-      stream: true
-    }));
+    // .pipe(reload({
+    //   stream: true
+    // }));
 });
 
 gulp.task('jshint', function() {
   return gulp.src('app/scripts/**/*.js')
-    .pipe(reload({
-      stream: true,
-      once: true
-    }))
+    // .pipe(reload({
+    //   stream: true,
+    //   once: true
+    // }))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+    // .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 gulp.task('html', ['styles'], function() {
@@ -65,7 +73,7 @@ gulp.task('html', ['styles'], function() {
       conditionals: true,
       loose: true
     })))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/'));
 });
 
 gulp.task('sprites', function() {
@@ -85,7 +93,7 @@ gulp.task('images', function() {
         cleanupIDs: false
       }]
     })))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/images'));
 });
 
 gulp.task('fonts', function() {
@@ -93,7 +101,7 @@ gulp.task('fonts', function() {
       filter: '**/*.{eot,svg,ttf,woff,woff2}'
     }).concat('app/fonts/**/*'))
     .pipe(gulp.dest('.tmp/fonts'))
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest('ios-application/platforms/ios/www/fonts'));
 });
 
 gulp.task('extras', function() {
@@ -102,7 +110,7 @@ gulp.task('extras', function() {
     '!app/*.html'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/'));
 });
 
 gulp.task('samples', function() {
@@ -110,13 +118,30 @@ gulp.task('samples', function() {
     'app/samples/**/*.mp3',
   ], {
     dot: true
-  }).pipe(gulp.dest('dist/samples'));
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/samples'));
 });
 
-gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+gulp.task('svg-sprite', function() {
+  return gulp.src([
+    'app/styles/sprites/**/*',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/styles/sprites'));
+});
 
-gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites'], function() {
+gulp.task('svg', function() {
+  return gulp.src([
+    'app/svg/**/*.svg',
+  ], {
+    dot: true
+  }).pipe(gulp.dest('ios-application/platforms/ios/www/svg'));
+});
+
+gulp.task('clean', require('del').bind(null, ['.tmp', 'ios-application/platforms/ios/www/']));
+
+gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites', 'svg', 'svg-sprite'], function() {
   browserSync({
+    browser: 'safari',
     notify: false,
     port: 9000,
     server: {
@@ -130,14 +155,16 @@ gulp.task('serve', ['es6', 'styles', 'fonts', 'samples', 'sprites'], function() 
   // watch for changes
   gulp.watch([
     'app/*.html',
-    'app/es6/**/*.js',
+    'app/es6/**/*.{jsx,js}',
     'app/scripts/**/*.js',
     'app/images/**/*',
     '.tmp/fonts/**/*'
-  ]).on('change', reload);
+  ]);
+  // .on('error', console.error.bind(console))
+  // .on('change', reload);
 
-  gulp.watch('app/es6/**/*.js', ['es6']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/es6/**/*.{jsx,js}', ['es6']).on('error', swallowError);
+  gulp.watch('app/styles/**/*.scss', ['styles']).on('error', swallowError);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
@@ -160,8 +187,8 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples'], function() {
-  return gulp.src('dist/**/*').pipe($.size({
+gulp.task('build', ['es6', 'html', 'sprites', 'images', 'fonts', 'extras', 'samples', 'svg', 'svg-sprite'], function() {
+  return gulp.src('ios-application/platforms/ios/www/**/*').pipe($.size({
     title: 'build',
     gzip: true
   }));
