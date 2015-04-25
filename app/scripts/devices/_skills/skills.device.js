@@ -57,52 +57,52 @@ var Skills = (function (_React$Component) {
     value: function render() {
       return React.createElement('div', {
         className: 'device device-skills',
-        style: { background: Skills.getColor() }
+        style: { background: Skills._getColor() }
       }, React.createElement(SkillsHeader, null), React.createElement(SkillsPads, { cols: '3', rows: '4' }), React.createElement(DeviceMenu, null));
     }
   }], [{
-    key: 'getCurrentDevicePads',
+    key: '_getCurrentDevicePads',
 
     /**
      * Get current skills device pads 
      *
      * @return {Object} DOM element
      */
-    value: function getCurrentDevicePads($device) {
-      return Device.getCurrentDevice().find('.skills-pads');
+    value: function _getCurrentDevicePads($device) {
+      return Device._getCurrentDevice().find('.skills-pads');
     }
   }, {
-    key: 'getCurrentDevicePad',
+    key: '_getCurrentDevicePad',
 
     /**
      * Get current skills device pad 
      *
      * @return {Object} DOM element
      */
-    value: function getCurrentDevicePad($device) {
-      return Skills.getCurrentDevicePads(Device.getCurrentDevice()).find('.pad');
+    value: function _getCurrentDevicePad($device) {
+      return Skills._getCurrentDevicePads(Device._getCurrentDevice()).find('.pad');
     }
   }, {
-    key: 'getColor',
+    key: '_getColor',
 
     /**
      * Get Skills device background color
      *
      * @return {String} RGB color
      */
-    value: function getColor() {
+    value: function _getColor() {
       return Helpers.getRGBColor();
     }
   }, {
-    key: 'setBGColor',
+    key: '_setBGColor',
 
     /**
      * Set Skills device background color
      */
-    value: function setBGColor() {
+    value: function _setBGColor() {
       var $device = $(event.target).closest('.device');
 
-      Helpers.setBGColor($device, Skills.getColor());
+      Helpers._setBGColor($device, Skills._getColor());
     }
   }]);
 
@@ -150,13 +150,13 @@ var SkillsHeader = (function (_React$Component2) {
               { className: 'col-4 text-center' },
               React.createElement('div', {
                 className: 'icon random-all',
-                onClick: SkillsPads.shuffle })
+                onClick: SkillsPads._shuffle })
             ),
             React.createElement(
               'div',
               { className: 'col-4 text-right' },
               React.createElement('div', { className: 'icon random-one',
-                onClick: SkillsPad.shuffleOne })
+                onClick: SkillsPad._shuffleOne })
             )
           )
         )
@@ -203,22 +203,22 @@ var SkillsPads = (function (_React$Component3) {
       );
     }
   }], [{
-    key: 'shuffle',
+    key: '_shuffle',
 
-    // Shuffle all pads in current device
-    value: function shuffle() {
-      var $pad = Skills.getCurrentDevicePad(),
+    // shuffle all pads in current device
+    value: function _shuffle() {
+      var $pad = Skills._getCurrentDevicePad(),
           file,
           kind = '';
 
       {
         $pad.map(function () {
-          SkillsPad.setPadFileAttribute(this);
+          SkillsPad._setPadFileAttribute(this);
         });
       }
 
       Audio.refresh();
-      Skills.setBGColor();
+      Skills._setBGColor();
     }
   }]);
 
@@ -243,14 +243,14 @@ var SkillsPad = (function (_React$Component4) {
   _inherits(SkillsPad, _React$Component4);
 
   _createClass(SkillsPad, [{
-    key: 'play',
+    key: '_play',
 
     /**
      * Play sample
      * or if pad has class `pad-wants-to-change`
-     * then shuffle pad
+     * then _shuffle pad
      */
-    value: function play() {
+    value: function _play() {
       var $pad = $(event.target);
 
       // console.log(React.findDOMNode(this.refs.pad))
@@ -282,11 +282,11 @@ var SkillsPad = (function (_React$Component4) {
         'div',
         {
           className: 'pad audio col-' + cols + ' pad-row-' + rows,
-          'data-audio-file': SkillsPad.setAudioFile(kind),
+          'data-audio-file': SkillsPad._setAudioFile(kind),
           'data-audio-kind': kind,
           'data-audio-length': 'long',
           'data-audio-hit': 'oneshot',
-          onClick: this.play.bind(this),
+          onClick: this._play.bind(this),
           ref: 'pad' },
         React.createElement(
           'p',
@@ -297,37 +297,37 @@ var SkillsPad = (function (_React$Component4) {
       );
     }
   }], [{
-    key: 'shuffleOne',
+    key: '_shuffleOne',
 
-    // Shuffle only one pad
-    value: function shuffleOne() {
-      var $pad = Skills.getCurrentDevicePad();
+    // shuffle only one pad
+    value: function _shuffleOne() {
+      var $pad = Skills._getCurrentDevicePad();
 
       $pad.toggleClass('pad-wants-to-change');
     }
   }, {
-    key: 'setPadFileAttribute',
+    key: '_setPadFileAttribute',
 
     /**
      * Set `data-audio-kind` attribute to the pad
      * 
      * @param {Object} Pad
      */
-    value: function setPadFileAttribute(pad) {
+    value: function _setPadFileAttribute(pad) {
       var kind = $(pad).attr('data-audio-kind'),
-          file = SkillsPad.setAudioFile(kind);
+          file = SkillsPad._setAudioFile(kind);
 
       $(pad).attr('data-audio-file', file);
     }
   }, {
-    key: 'setAudioFile',
+    key: '_setAudioFile',
 
     /**
      * Set audio file in to pad attribute
      *
      * @param {String} Folder name
      */
-    value: function setAudioFile(kind) {
+    value: function _setAudioFile(kind) {
       var totalFiles = skillsSamples[kind],
           file = Helpers.getRandom(1, totalFiles);
 

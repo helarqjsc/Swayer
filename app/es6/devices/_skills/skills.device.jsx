@@ -88,8 +88,8 @@ class Skills extends React.Component {
    *
    * @return {Object} DOM element
    */
-  static getCurrentDevicePads($device) {
-    return Device.getCurrentDevice().find('.skills-pads');
+  static _getCurrentDevicePads($device) {
+    return Device._getCurrentDevice().find('.skills-pads');
   }
 
   /**
@@ -97,8 +97,8 @@ class Skills extends React.Component {
    *
    * @return {Object} DOM element
    */
-  static getCurrentDevicePad($device) {
-    return Skills.getCurrentDevicePads(Device.getCurrentDevice()).find('.pad');
+  static _getCurrentDevicePad($device) {
+    return Skills._getCurrentDevicePads(Device._getCurrentDevice()).find('.pad');
   }
 
   /**
@@ -106,24 +106,24 @@ class Skills extends React.Component {
    *
    * @return {String} RGB color
    */
-  static getColor() {
+  static _getColor() {
     return Helpers.getRGBColor();
   }
 
   /**
    * Set Skills device background color
    */
-  static setBGColor() {
+  static _setBGColor() {
     var $device = $(event.target).closest('.device');
 
-    Helpers.setBGColor($device, Skills.getColor());
+    Helpers._setBGColor($device, Skills._getColor());
   }
 
   render() {
     return (
       React.createElement('div', {
           className: "device device-skills",
-          style: {background: Skills.getColor()}
+          style: {background: Skills._getColor()}
         },
         <SkillsHeader />,
         <SkillsPads cols="3" rows="4" />,
@@ -154,12 +154,12 @@ class SkillsHeader extends React.Component {
             <div className="col-4 text-center">
               <div
                 className="icon random-all"
-                onClick={SkillsPads.shuffle} />
+                onClick={SkillsPads._shuffle} />
             </div>
 
             <div className="col-4 text-right">
               <div className="icon random-one" 
-                onClick={SkillsPad.shuffleOne}/>
+                onClick={SkillsPad._shuffleOne}/>
             </div>
 
           </div>
@@ -175,18 +175,18 @@ class SkillsHeader extends React.Component {
  */
 class SkillsPads extends React.Component {
 
-  // Shuffle all pads in current device
-  static shuffle() {
-    var $pad = Skills.getCurrentDevicePad(),
+  // shuffle all pads in current device
+  static _shuffle() {
+    var $pad = Skills._getCurrentDevicePad(),
 
         file, kind = '';
 
     {$pad.map(function() {
-      SkillsPad.setPadFileAttribute(this);
+      SkillsPad._setPadFileAttribute(this);
     })}
 
     Audio.refresh();
-    Skills.setBGColor();
+    Skills._setBGColor();
   }
 
   render() {
@@ -213,9 +213,9 @@ class SkillsPads extends React.Component {
  */
 class SkillsPad extends React.Component {
 
-  // Shuffle only one pad
-  static shuffleOne() {
-    var $pad = Skills.getCurrentDevicePad();
+  // shuffle only one pad
+  static _shuffleOne() {
+    var $pad = Skills._getCurrentDevicePad();
 
     $pad.toggleClass('pad-wants-to-change');
   }
@@ -225,9 +225,9 @@ class SkillsPad extends React.Component {
    * 
    * @param {Object} Pad
    */
-  static setPadFileAttribute(pad) {
+  static _setPadFileAttribute(pad) {
     var kind = $(pad).attr('data-audio-kind'),
-        file = SkillsPad.setAudioFile(kind);
+        file = SkillsPad._setAudioFile(kind);
 
     $(pad).attr('data-audio-file', file);
   }
@@ -237,7 +237,7 @@ class SkillsPad extends React.Component {
    *
    * @param {String} Folder name
    */
-  static setAudioFile(kind) {
+  static _setAudioFile(kind) {
     var totalFiles = skillsSamples[kind],
         file = Helpers.getRandom(1, totalFiles);
 
@@ -247,9 +247,9 @@ class SkillsPad extends React.Component {
   /**
    * Play sample
    * or if pad has class `pad-wants-to-change`
-   * then shuffle pad
+   * then _shuffle pad
    */
-  play() {
+  _play() {
     var $pad = $(event.target);
 
     // console.log(React.findDOMNode(this.refs.pad))
@@ -281,11 +281,11 @@ class SkillsPad extends React.Component {
     return (
       <div
         className={`pad audio col-${cols} pad-row-${rows}`}
-        data-audio-file={SkillsPad.setAudioFile(kind)}
+        data-audio-file={SkillsPad._setAudioFile(kind)}
         data-audio-kind={kind}
         data-audio-length="long"
         data-audio-hit="oneshot"
-        onClick={this.play.bind(this)}
+        onClick={this._play.bind(this)}
         ref="pad">
 
         <p className="show">
